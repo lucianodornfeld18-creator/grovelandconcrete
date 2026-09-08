@@ -1,0 +1,11 @@
+# build output (Cloudflare Pages builds it from site/ with `python build.py`)
+site/dist/
+# local tool state
+**/__pycache__/
+**/.wrangler/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*

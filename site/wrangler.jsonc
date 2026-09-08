@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "grovelandconcrete",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-09-07",
+  "services": [
+    { "binding": "CONTACT_EMAIL", "service": "grovelandconcrete-contact" }
+  ],
+  "kv_namespaces": [
+    { "binding": "RATE_LIMIT_KV", "id": "79251e6d084d45dfb883286a8d0f6dde" }
+  ]
+}
