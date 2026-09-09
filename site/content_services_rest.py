@@ -196,7 +196,7 @@ def _page_workshop_slabs():
       </div>
       <div class="card">
         <h3>Dimensions come from the building, not a guess</h3>
-        <p>Most metal building kits specify exact slab dimensions and anchor bolt layout. Pouring before that spec is finalized is one of the most common — and expensive — mistakes on rural workshop projects.</p>
+        <p>Most metal building kits specify exact slab dimensions and anchor bolt layout. Pouring before that spec is finalized is among the most frequent — and expensive — mistakes on rural workshop projects.</p>
       </div>
     </div>
   </div>
@@ -516,7 +516,7 @@ PAVER_DRIVEWAY_FAQS = [
     ("Does a paver driveway need a different base than a paver patio?",
      "Yes. A driveway carrying vehicle weight needs a deeper compacted aggregate base — commonly 6–8+ inches of crushed stone, versus roughly 4–6 inches under a pedestrian-only paver patio — plus a properly compacted bedding layer under the pavers themselves. Skimping on base depth is the most common reason a paver driveway starts to rut or shift where tires track."),
     ("Do paver driveways need edge restraints?",
-     "Yes, and it matters more here than on a patio. Vehicles turning and braking push pavers sideways, and without a solid edge restraint (plastic, aluminum, or a concrete curb) anchored into the base, the outer rows gradually spread and the whole field loosens over time. This is one of the most common failure points on paver driveways installed without it."),
+     "Yes, and it matters more here than on a patio. Vehicles turning and braking push pavers sideways, and without a solid edge restraint (plastic, aluminum, or a concrete curb) anchored into the base, the outer rows gradually spread and the whole field loosens over time. This is among the most frequent failure points on paver driveways installed without it."),
     ("What paver pattern holds up best under vehicle traffic?",
      "Herringbone (pavers laid at a 45- or 90-degree interlocking angle) is the pattern most commonly recommended for vehicular use because it interlocks against the shifting forces of turning and braking better than a simple running-bond or stack pattern, which are more common on patios where only foot traffic applies."),
     ("Can a long paver driveway work the same way a long concrete driveway does?",
