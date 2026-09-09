@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from _data import BUSINESS, SERVICES, SERVICE_ORDER, CITIES, CITY_ORDER, TOOLS
 from templates import turnstile_html
+from _photos import home_strip
 
 def get_pages():
     services_cards = "\n".join(
@@ -118,6 +119,8 @@ def get_pages():
     </div>
   </div>
 </section>
+
+{home_strip(6)}
 
 <section>
   <div class="wrap">

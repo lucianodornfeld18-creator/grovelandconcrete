@@ -26,7 +26,7 @@ def get_pages():
         "h1": "Services",
         "breadcrumbs": [("Home", "/"), ("Services", None)],
         "nav_active": "/services/",
-        "body_html": f'<div class="wrap" style="padding-bottom:60px"><p class="lede">Eight services, each confirmed with a real provider serving South Lake County — nothing advertised without a matching, staffed capability.</p><div class="grid grid-3" style="margin-top:24px">{_cards(SERVICE_ORDER, SERVICES)}</div></div>',
+        "body_html": f'<div class="wrap" style="padding-bottom:60px"><p class="lede">Eight services, each confirmed with a real provider serving South Lake County — nothing advertised without a matching, staffed capability.</p><div class="grid grid-3" style="margin-top:24px">{_cards(SERVICE_ORDER, SERVICES)}</div><p style="margin-top:26px"><a class="card-link" href="/gallery/">See job photos in the gallery &rarr;</a></p></div>',
     })
 
     pages.append({

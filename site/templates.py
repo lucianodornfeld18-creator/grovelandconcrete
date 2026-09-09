@@ -22,6 +22,10 @@ from _data import (
     SERVICES, SERVICE_ORDER, CITIES, CITY_ORDER, TOOLS, TOOL_ORDER,
     TURNSTILE_SITE_KEY,
 )
+from _photos import gallery_section, photos_for, image_schema
+
+# route -> service key, so render_page can append the photo gallery to each service page
+_SERVICE_BY_ROUTE = {v["route"]: k for k, v in SERVICES.items()}
 
 DEFAULT_OG_IMAGE = "/static/brand/png/social-badge-512.png"
 
@@ -131,6 +135,7 @@ def footer_html() -> str:
         <li><a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a></li>
         <li><a href="mailto:{BUSINESS['email_placeholder']}">{BUSINESS['email_placeholder']}</a></li>
         <li><a href="/contact/">Request an estimate</a></li>
+        <li><a href="/gallery/">Photo gallery</a></li>
       </ul>
     </div>
   </div>
@@ -188,6 +193,10 @@ def render_page(page: dict) -> str:
 
     active_route = page.get("nav_active", "")
     body_html = page["body_html"]
+    svc_key = _SERVICE_BY_ROUTE.get(route)
+    if svc_key and not page.get("no_gallery"):
+        body_html += gallery_section(svc_key, SERVICES[svc_key]["name"])
+        schema_objects.extend(image_schema(photos_for(svc_key)[:9], BASE_URL))
     crumbs_block = breadcrumbs_html(crumbs) if crumbs and not is_home else ""
 
     return f"""<!DOCTYPE html>

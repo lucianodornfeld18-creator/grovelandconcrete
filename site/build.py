@@ -32,6 +32,7 @@ CONTENT_MODULES = [
     "content_cities_extra",
     "content_guides",
     "content_comparisons",
+    "content_gallery",
 ]
 
 
