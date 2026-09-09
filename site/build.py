@@ -204,9 +204,10 @@ def write_headers_and_redirects():
   Cache-Control: public, max-age=3600
 """
     (DIST / "_headers").write_text(headers, encoding="utf-8")
-    redirects = f"""https://www.{DOMAIN}/* https://{DOMAIN}/:splat 301
-"""
-    (DIST / "_redirects").write_text(redirects, encoding="utf-8")
+    # NOTE: www -> apex cannot be done in Pages _redirects (source must be a path,
+    # not a host). It is a zone Redirect Rule in the Cloudflare dashboard
+    # (Rules > Redirect Rules > "Redirect from WWW to root"). Canonical tags
+    # already point at the apex, so SEO is safe either way.
 
 
 def write_404():

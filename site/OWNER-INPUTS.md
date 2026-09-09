@@ -20,6 +20,8 @@ Nothing below is published with real values yet. The site works and builds with 
 
 ## Cloudflare setup checklist
 
+0. **www redirect (dashboard only):** Rules > Redirect Rules > template "Redirect from WWW to root" (301). Pages `_redirects` cannot match a hostname, so this is the only place it can live.
+
 1. Create the Pages project, connect this repo, set build output directory to `dist` (no build command needed — run `python build.py` locally/in CI before deploy, or wire it as the Pages build command if Python is available in the build image).
 2. Create the `grovelandconcrete-contact` Worker (`workers/contact-email/`) and bind it as a service in `wrangler.jsonc`.
 3. Set the `CONTACT_DESTINATION` secret on the contact-email worker to the real destination email.
