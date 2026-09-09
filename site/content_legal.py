@@ -19,7 +19,7 @@ def get_pages():
   <div class="trust-strip" style="margin:0 0 28px">{"".join(f'<span class="chip trust-chip">{t}</span>' for t in BUSINESS['trust_points'])}</div>
 
   <h2>Who we are</h2>
-  <p>Groveland Concrete is a concrete and paving contractor built around one specific, underserved kind of property: the large, rural, and semi-rural lots that make up Groveland and much of South Lake County. Long approaches, RV and boat storage, workshops and metal buildings, and sandy-soil drainage don't get real treatment from typical city-by-city contractors — that is the work we set the company up to do well. We are a service-area business based in Groveland, working across Mascotte, Minneola, Clermont, Montverde, Howey-in-the-Hills, and unincorporated Lake County.</p>
+  <p>Groveland Concrete is a concrete and paving contractor built around one specific, underserved kind of property: the large, rural, and semi-rural lots that make up Groveland and much of South Lake County. Long approaches, RV and boat storage, workshops and metal buildings, and sandy-soil drainage don't get real treatment from typical city-by-city contractors — that is the work we set the company up to do well. Groveland is home base; from there our crews cover Mascotte, Minneola, Clermont, Montverde, Howey-in-the-Hills, and unincorporated Lake County as a service-area business.</p>
 
   <h2>What we install</h2>
   <ul class="list-check">
@@ -31,11 +31,11 @@ def get_pages():
 
   <h2>How we work</h2>
   <ol style="padding-left:20px">
-    <li><strong>Site walk first.</strong> We probe your ground instead of eyeballing it, measure the approach, and check whether a loaded mixer truck can reach and turn around on your lot.</li>
+    <li><strong>Site walk first.</strong> We test the soil with a probe rather than judging it from the surface, measure the approach, and confirm a loaded mixer truck can reach and turn around on your lot.</li>
     <li><strong>Everything in writing.</strong> A line-itemized estimate with thickness, PSI, base spec, reinforcement, and joint plan on paper — not a phone quote by the square foot.</li>
     <li><strong>Permits handled up front.</strong> We tell you which office your job goes through (Groveland, Lake County, or Sumter County) before anything is scheduled.</li>
     <li><strong>Drainage you can see.</strong> Slope is built to the 1/8-inch-per-foot standard and hose-tested at handover.</li>
-    <li><strong>Warranty and care guide.</strong> Every job leaves with a written workmanship warranty and a cure calendar so you know when it's safe to drive, park, or load.</li>
+    <li><strong>Warranty and care guide.</strong> Every job closes with our workmanship warranty in writing plus a cure calendar, so you know exactly when it's safe to drive, park, or load.</li>
   </ol>
 
   <h2>Our standards</h2>
@@ -46,7 +46,7 @@ def get_pages():
   </ul>
 
   <h2>What happens when you call</h2>
-  <p>Call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a> or use the <a href="/contact/">contact form</a>. We typically reply within one business day to set up a free site visit, and you'll have a written estimate shortly after. We do not sell your contact information to third parties.</p>
+  <p>Call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a> or send the <a href="/contact/">contact form</a>; we typically reply within one business day to set up a free site visit, and you'll have a written estimate shortly after. We do not sell your contact information to third parties.</p>
 </div>
 ''',
     })
@@ -143,7 +143,7 @@ def get_pages():
 <div class="wrap" style="padding:0 0 60px">
   <p class="lede">Last updated: 2026-09-07.</p>
   <h2>What we collect</h2>
-  <p>When you submit our contact form, we collect the information you provide (name, phone, email, service, city, and project details), plus basic technical data (page URL, referrer, and UTM parameters) used to follow up on your request correctly. We do not use tracking pixels beyond standard, privacy-respecting analytics.</p>
+  <p>When you send us the contact form, we collect the information you provide (name, phone, email, service, city, and project details), plus basic technical data (page URL, referrer, and UTM parameters) used to follow up on your request correctly. We do not use tracking pixels beyond standard, privacy-respecting analytics.</p>
   <h2>How we use it</h2>
   <p>{BUSINESS['disclosure_form']} We do not sell or rent your information to unrelated third parties.</p>
   <h2>Calls and texts</h2>

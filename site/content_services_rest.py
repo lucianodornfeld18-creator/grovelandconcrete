@@ -153,7 +153,7 @@ def _page_rv_boat_pads():
 
 WORKSHOP_FAQS = [
     ("What is a thickened edge slab for a metal building?",
-     "It's a slab where the perimeter is poured deeper than the field of the slab — commonly 12–16 inches wide and 8–12 inches deep around the edge — to carry the point loads of a metal building's or barn's support posts. A flat, uniform slab isn't built to carry those concentrated loads at the perimeter, which is why workshop and metal-building slabs are specified differently from a driveway or patio slab."),
+     "It's a slab where the perimeter is poured deeper than the field of the slab — commonly 12–16 inches wide and 8–12 inches deep around the edge — to carry the point loads of a metal building's or barn's support posts. A flat, uniform slab isn't built to carry those concentrated loads along the perimeter — the reason workshop and metal-building slabs are specified differently from a driveway or patio slab."),
     ("Do I need a vapor barrier under my workshop slab?",
      "It depends on what's going in the building. If you're storing tools, running equipment with electronics, finishing wood, or putting down flooring that moisture can damage, a vapor barrier under the slab is worth the added cost — it keeps ground moisture from wicking up through the concrete. For an open-air equipment pad with no climate-sensitive contents, it's a smaller priority. This is a conversation to have before the pour, since it can't be added after."),
     ("How thick should a workshop slab be to support heavy equipment or a lift?",
@@ -344,7 +344,7 @@ REPAIR_FAQS = [
     ("How do I know if my driveway needs repair or full replacement?",
      "Hairline surface cracks, minor pitting, and cosmetic discoloration are usually repair or resurfacing candidates. Wide cracks that keep growing, sections that have visibly sunk or tilted, or a slab that's crumbling below the surface generally point to a base failure that resurfacing won't fix — that's a replacement conversation. See our <a href=\"/guides/repair-vs-replace-driveway/\">Repair or Replace</a> guide for the full breakdown."),
     ("What causes concrete driveways to sink or settle over time?",
-     "Most sinking traces back to the base underneath, not the concrete itself — inadequate compaction during the original pour, erosion or washout under the slab from poor drainage, or Central Florida's sandy soil shifting over time. A slab is only as stable as what's underneath it, which is why base preparation matters as much to long-term durability as the pour itself."),
+     "Most sinking traces back to the base underneath, not the concrete itself — inadequate compaction during the original pour, erosion or washout under the slab from poor drainage, or Central Florida's sandy soil shifting over time. A slab can't be any more stable than the ground under it, so base preparation matters as much to long-term durability as the pour itself."),
     ("Can a cracked concrete slab be resurfaced instead of replaced?",
      "Often, yes — if the cracking is cosmetic and the base underneath is still sound, a resurfacing overlay (commonly around 1 inch) can restore the surface without a full tear-out. If the cracks indicate the base has failed, resurfacing over that problem just delays it, and typically costs more in the long run than fixing the base and repouring."),
     ("How much does concrete resurfacing cost compared to a new pour?",

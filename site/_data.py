@@ -23,8 +23,8 @@ BUSINESS = {
     "disclosure_short": (
         "Groveland Concrete is a concrete and paving contractor serving Groveland and South Lake "
         "County — concrete driveways, RV and boat pads, workshop slabs, patios, paver driveways "
-        "and patios, pool decks, walkways, and retaining walls. Fully insured, free estimates, and a "
-        "written workmanship warranty on every job."
+        "and patios, pool decks, walkways, and retaining walls. Fully insured, free estimates, and every "
+        "job backed by our workmanship warranty in writing."
     ),
     # Consent line under the forms / privacy policy.
     "disclosure_form": (

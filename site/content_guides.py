@@ -393,7 +393,7 @@ def get_pages():
     ]
     body7 = f'''
 <div class="wrap" style="padding-bottom:20px">
-  <p class="lede">A driveway that's already showing cracks a few months — or even a few weeks — after the pour is one of the most common concrete complaints out there, and the causes fall into a short list of usual suspects.</p>
+  <p class="lede">A driveway that's already showing cracks a few months — or even a few weeks — after the pour ranks among the most frequent concrete complaints we hear, and the causes fall into a short list of usual suspects.</p>
 </div>
 
 <section class="alt">
