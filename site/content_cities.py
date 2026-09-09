@@ -37,7 +37,7 @@ def _service_schema(area_served):
         "@type": "Service",
         "name": f"Concrete & Hardscape Planning — {area_served}",
         "areaServed": area_served,
-        "provider": {"@type": "Organization", "name": BUSINESS["legal_provider_placeholder"]},
+        "provider": {"@type": "Organization", "@id": "https://grovelandconcrete.com/#organization", "name": "Groveland Concrete", "url": "https://grovelandconcrete.com"},
     }
 
 
@@ -59,7 +59,7 @@ def get_pages():
     # ------------------------------------------------------------------
     groveland_faqs = [
         ("Who does concrete driveways in Groveland, FL?",
-         "There are very few Groveland-dedicated concrete sites to compare — most search results for \"concrete contractor Groveland FL\" are general directories (BBB, Yellow Pages, Houzz) or single-page listings without pricing, photos, or a visible license number. That's an unusually open field compared to nearby Clermont. Groveland Concrete exists to give Groveland residents a real planning resource — specs, cost ranges, and permit information — before you request an estimate from a provider serving this area."),
+         "There are very few Groveland-dedicated concrete sites to compare — most search results for \"concrete contractor Groveland FL\" are general directories (BBB, Yellow Pages, Houzz) or single-page listings without pricing, photos, or a visible license number. That's an unusually open field compared to nearby Clermont. Groveland Concrete is a concrete and paving contractor based in Groveland: we publish the specs, cost ranges, and permit information up front, then come out for a free site visit and a written, line-itemized estimate."),
         ("Do I need a permit for a concrete driveway in Groveland, FL?",
          "Permitting for work inside Groveland city limits goes through the City of Groveland Building Division, which runs an online eTRAKiT portal for applications and inspections. If your property is just outside the city line, in unincorporated Lake County, the jurisdiction is different — see our Permit Directory to confirm which office covers your address before you assume either way."),
         ("Is there a concrete contractor in Groveland who handles barn or workshop slabs?",

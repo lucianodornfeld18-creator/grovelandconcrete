@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Shared structural data for grovelandconcrete.com. No fake NAP, no fake reviews,
-no LocalBusiness schema — this hub has no address or GBP of its own."""
+"""Shared structural data for grovelandconcrete.com.
+
+Positioning: Groveland Concrete is a concrete & paving contractor (service-area
+business) serving Groveland and South Lake County — same model as
+ocoeeconcrete.com / windermereconcrete.com. Never "general contractor", never a
+license number: "Fully Insured" / "Free Estimates" / "Written Workmanship
+Warranty" only. No fake reviews, project counts or years-in-business."""
 
 DOMAIN = "grovelandconcrete.com"
 BASE_URL = f"https://{DOMAIN}"
@@ -13,17 +18,20 @@ BUSINESS = {
     "phone_tel_placeholder": "+13526045480",
     "email_placeholder": "hello@grovelandconcrete.com",
     "destination_email_placeholder": "opusdigitalmarketingflorida@gmail.com",
-    "legal_provider_placeholder": "{{LEGAL_PROVIDER_AND_LICENSE_IF_REQUIRED}}",
+    # Short "who we are" blurb — used in the footer, the trust box on service/city/guide
+    # pages, llms.txt and the Organization schema. (Key name kept for compatibility.)
     "disclosure_short": (
-        "Groveland Concrete is an independent information resource for concrete and hardscape "
-        "planning in Groveland and South Lake County. We are not a general contractor. Requests "
-        "submitted here may be forwarded to a licensed provider serving this area."
+        "Groveland Concrete is a concrete and paving contractor serving Groveland and South Lake "
+        "County — concrete driveways, RV and boat pads, workshop slabs, patios, paver driveways "
+        "and patios, pool decks, walkways, and retaining walls. Fully insured, free estimates, and a "
+        "written workmanship warranty on every job."
     ),
+    # Consent line under the forms / privacy policy.
     "disclosure_form": (
-        "By submitting this form you agree that your request may be forwarded to a licensed "
-        "provider serving your area so they can contact you about your project. We do not sell "
-        "your information to third parties."
+        "By submitting this form you agree that Groveland Concrete may contact you by phone, text, "
+        "or email about your project. We do not sell your information to third parties."
     ),
+    "trust_points": ["Concrete & Paving Contractor", "Fully Insured", "Free Estimates", "Written Workmanship Warranty"],
 }
 
 # Cloudflare Turnstile public site key. While this is still the placeholder the

@@ -9,30 +9,44 @@ def get_pages():
     pages.append({
         "route": "/about/",
         "title": "About Groveland Concrete",
-        "meta_description": "What Groveland Concrete is, how it works, and how your request is handled — no invented team, address, or history.",
+        "meta_description": "Groveland Concrete is a concrete and paving contractor serving Groveland and South Lake County — what we install, how we work, and what to expect when you call.",
         "h1": "About Groveland Concrete",
         "breadcrumbs": [("Home", "/"), ("About", None)],
         "nav_active": "/about/",
         "body_html": f'''
 <div class="wrap" style="padding:0 0 60px">
   <p class="lede">{BUSINESS['disclosure_short']}</p>
+  <div class="trust-strip" style="margin:0 0 28px">{"".join(f'<span class="chip trust-chip">{t}</span>' for t in BUSINESS['trust_points'])}</div>
 
-  <h2>What this site is</h2>
-  <p>Groveland Concrete is an independent planning resource focused on one specific, underserved problem: concrete and hardscape projects on the large, rural, and semi-rural lots that make up Groveland and much of South Lake County. Long approaches, RV and boat storage, workshops and metal buildings, and sandy-soil drainage don't get real treatment on typical city-by-city contractor sites — this site exists to cover them properly.</p>
+  <h2>Who we are</h2>
+  <p>Groveland Concrete is a concrete and paving contractor built around one specific, underserved kind of property: the large, rural, and semi-rural lots that make up Groveland and much of South Lake County. Long approaches, RV and boat storage, workshops and metal buildings, and sandy-soil drainage don't get real treatment from typical city-by-city contractors — that is the work we set the company up to do well. We are a service-area business based in Groveland, working across Mascotte, Minneola, Clermont, Montverde, Howey-in-the-Hills, and unincorporated Lake County.</p>
 
-  <h2>What this site is not</h2>
-  <p>We are not a general contractor, and we don't have a storefront, showroom, or crew of our own. We publish planning content, permit information, and calculators, and we route qualified requests to a licensed provider who actually serves your area. If a request needs to name that provider for legal or licensing reasons, we'll disclose that clearly before you submit any information — see our <a href="/privacy-policy/">Privacy Policy</a>.</p>
-
-  <h2>Editorial standards</h2>
+  <h2>What we install</h2>
   <ul class="list-check">
-    <li>We do not publish reviews, project counts, years-in-business claims, or licensing details we haven't verified.</li>
-    <li>Technical claims (thickness, PSI, permit requirements, curing times) are sourced to the Florida Building Code, ACI/NRMCA industry guidance, or the relevant city/county — sources are linked where we cite a specific number.</li>
-    <li>Where research could not confirm something (for example, a specific municipality's permit process for a niche project like a boat pad), we say so instead of guessing.</li>
-    <li>We do not use "our crew," "we install," or "licensed contractor" language about ourselves — those claims belong to the provider who actually performs the work.</li>
+    <li>Concrete driveways — standard two-car approaches and long rural driveways, 4–6 inches, 4,000 PSI, rebar-reinforced.</li>
+    <li>RV and boat pads and workshop slabs, sized and reinforced for the load that will actually sit on them.</li>
+    <li>Concrete patios, sidewalks and walkways, repair and resurfacing.</li>
+    <li>Paver driveways, paver patios, pool decks in marble, travertine and concrete pavers, entry steps and retaining walls.</li>
   </ul>
 
-  <h2>How a request is handled</h2>
-  <p>When you call or submit the <a href="/contact/">contact form</a>, your information is forwarded to a provider serving your area so they can follow up about your project. We do not sell your contact information to third parties.</p>
+  <h2>How we work</h2>
+  <ol style="padding-left:20px">
+    <li><strong>Site walk first.</strong> We probe your ground instead of eyeballing it, measure the approach, and check whether a loaded mixer truck can reach and turn around on your lot.</li>
+    <li><strong>Everything in writing.</strong> A line-itemized estimate with thickness, PSI, base spec, reinforcement, and joint plan on paper — not a phone quote by the square foot.</li>
+    <li><strong>Permits handled up front.</strong> We tell you which office your job goes through (Groveland, Lake County, or Sumter County) before anything is scheduled.</li>
+    <li><strong>Drainage you can see.</strong> Slope is built to the 1/8-inch-per-foot standard and hose-tested at handover.</li>
+    <li><strong>Warranty and care guide.</strong> Every job leaves with a written workmanship warranty and a cure calendar so you know when it's safe to drive, park, or load.</li>
+  </ol>
+
+  <h2>Our standards</h2>
+  <ul class="list-check">
+    <li>Technical claims on this site (thickness, PSI, permit requirements, curing times) are sourced to the Florida Building Code, ACI/NRMCA industry guidance, or the relevant city/county — sources are linked where we cite a specific number.</li>
+    <li>We do not publish reviews, project counts, or years-in-business figures we can't back up.</li>
+    <li>Where something could not be confirmed (for example, a municipality's permit process for a niche project like a boat pad), we say so instead of guessing.</li>
+  </ul>
+
+  <h2>What happens when you call</h2>
+  <p>Call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a> or use the <a href="/contact/">contact form</a>. We typically reply within one business day to set up a free site visit, and you'll have a written estimate shortly after. We do not sell your contact information to third parties.</p>
 </div>
 ''',
     })
@@ -41,7 +55,7 @@ def get_pages():
     pages.append({
         "route": "/contact/",
         "title": "Request a Free Estimate",
-        "meta_description": "Tell us about your driveway, RV/boat pad, or slab project. Your request is routed to a provider serving Groveland and South Lake County.",
+        "meta_description": "Tell us about your driveway, RV/boat pad, slab, or paver project. Free written estimates from Groveland Concrete across Groveland and South Lake County.",
         "h1": "Request a Free Estimate",
         "breadcrumbs": [("Home", "/"), ("Contact", None)],
         "nav_active": "",
@@ -109,9 +123,9 @@ def get_pages():
   <aside class="card" style="align-self:start">
     <h3>What happens next</h3>
     <ol style="padding-left:20px;color:var(--ink-soft)">
-      <li>Your request is checked and routed to a provider serving your city.</li>
-      <li>They'll typically call or email within one business day.</li>
-      <li>You'll get a real estimate based on your site — not a phone quote based on square footage alone.</li>
+      <li>We call or email back, typically within one business day, to set up a free site visit.</li>
+      <li>On site we probe the ground, measure the approach, and check mixer-truck access.</li>
+      <li>You get a written, line-itemized estimate — thickness, PSI, base, reinforcement — not a phone quote by the square foot.</li>
     </ol>
   </aside>
 </div>
@@ -122,20 +136,20 @@ def get_pages():
     pages.append({
         "route": "/privacy-policy/",
         "title": "Privacy Policy",
-        "meta_description": "How Groveland Concrete collects, uses, and forwards the information you submit.",
+        "meta_description": "How Groveland Concrete collects and uses the information you submit.",
         "h1": "Privacy Policy",
         "breadcrumbs": [("Home", "/"), ("Privacy Policy", None)],
         "body_html": f'''
 <div class="wrap" style="padding:0 0 60px">
   <p class="lede">Last updated: 2026-09-07.</p>
   <h2>What we collect</h2>
-  <p>When you submit our contact form, we collect the information you provide (name, phone, email, service, city, and project details), plus basic technical data (page URL, referrer, and UTM parameters) used to route your request correctly. We do not use tracking pixels beyond standard, privacy-respecting analytics.</p>
+  <p>When you submit our contact form, we collect the information you provide (name, phone, email, service, city, and project details), plus basic technical data (page URL, referrer, and UTM parameters) used to follow up on your request correctly. We do not use tracking pixels beyond standard, privacy-respecting analytics.</p>
   <h2>How we use it</h2>
   <p>{BUSINESS['disclosure_form']} We do not sell or rent your information to unrelated third parties.</p>
   <h2>Calls and texts</h2>
-  <p>By providing your phone number and submitting the form, you consent to being contacted by phone, text, or email about your request. Calls may be recorded for quality and training purposes by the provider handling your request; if so, that will be disclosed at the start of the call.</p>
+  <p>By providing your phone number and submitting the form, you consent to being contacted by phone, text, or email about your request. Calls may be recorded for quality and training purposes; if so, that will be disclosed at the start of the call.</p>
   <h2>Data retention</h2>
-  <p>Submitted requests are retained only as long as needed to route and follow up on your inquiry, and are not stored in this site's own database — submissions are forwarded by email and are not logged with personal data in site analytics or public logs.</p>
+  <p>Submitted requests are retained only as long as needed to follow up on your inquiry and to service the resulting job, and are not stored in this site's own database — submissions are delivered to our office by email and are not logged with personal data in site analytics or public logs.</p>
   <h2>Contact</h2>
   <p>Questions about this policy: <a href="mailto:{BUSINESS['email_placeholder']}">{BUSINESS['email_placeholder']}</a>.</p>
 </div>
@@ -153,13 +167,13 @@ def get_pages():
 <div class="wrap" style="padding:0 0 60px">
   <p class="lede">Last updated: 2026-09-07.</p>
   <h2>Purpose of this site</h2>
-  <p>Groveland Concrete publishes planning information, permit links, and calculators for concrete and hardscape projects in Groveland and South Lake County, Florida, and routes visitor requests to a provider serving that area. It is not itself a licensed contractor.</p>
+  <p>Groveland Concrete is a concrete and paving contractor serving Groveland and South Lake County, Florida. This site describes our services and publishes planning information, permit links, and calculators for concrete and hardscape projects in that area.</p>
   <h2>Estimates and calculators</h2>
-  <p>Costs, thickness recommendations, and other figures shown on this site — including calculator results — are estimates for planning purposes only, based on published industry and local pricing ranges. They are not a quote, bid, or guarantee. A final price depends on a site visit and the provider's own assessment.</p>
+  <p>Costs, thickness recommendations, and other figures shown on this site — including calculator results — are estimates for planning purposes only, based on published industry and local pricing ranges. They are not a quote, bid, or guarantee. A final price depends on a site visit and the written estimate we prepare for your project.</p>
   <h2>No professional advice</h2>
-  <p>Content on this site is educational and does not replace advice from a licensed contractor, engineer, or your local building department for your specific project and jurisdiction.</p>
+  <p>Planning content on this site is educational and does not replace a site visit, an engineer's review where one is required, or your local building department's requirements for your specific project and jurisdiction.</p>
   <h2>Limitation of liability</h2>
-  <p>This site is provided "as is." We are not liable for decisions made based on its content, or for the work performed by any provider your request is routed to.</p>
+  <p>This site is provided "as is," and we are not liable for decisions made solely on the basis of its planning content or calculators. Work we perform is governed by the written estimate and workmanship warranty issued for that job.</p>
 </div>
 ''',
     })
@@ -188,7 +202,7 @@ def get_pages():
         "noindex": True,
         "body_html": f'''
 <div class="wrap status-page">
-  <p class="lede" style="margin:0 auto">A member of the provider team serving your area will typically reach out within one business day. Need it sooner? Call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a>.</p>
+  <p class="lede" style="margin:0 auto">We'll typically reach out within one business day to set up your free site visit. Need it sooner? Call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a>.</p>
   <p><a class="btn btn-outline" href="/">Back to homepage</a></p>
 </div>
 ''',

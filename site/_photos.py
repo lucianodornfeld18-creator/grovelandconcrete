@@ -76,8 +76,8 @@ def gallery_section(service_key, service_name, limit=9):
 <section class="alt">
   <div class="wrap">
     <span class="eyebrow">Recent work</span>
-    <h2>{_esc(service_name)} — photos from the provider serving South Lake County</h2>
-    <p class="lede">Job photos from the licensed provider that Groveland Concrete routes requests to. Projects shown are across Central Florida; every job is planned for its own lot, soil and access.{note}</p>
+    <h2>{_esc(service_name)} — recent jobs</h2>
+    <p class="lede">Job photos from our crews across Central Florida. Every job is planned for its own lot, soil, and truck access.{note}</p>
     <div class="gallery">
 {figs}
     </div>
@@ -93,8 +93,8 @@ def home_strip(limit=6):
 <section>
   <div class="wrap">
     <span class="eyebrow">Recent Work</span>
-    <h2>Driveways, pool decks and walkways built by the provider we route to</h2>
-    <p class="lede">Real job photos from Central Florida — paver driveways, marble and travertine pool decks, raised terraces and entry steps. See how the work is finished before you request an estimate.</p>
+    <h2>Driveways, pool decks and walkways we've built</h2>
+    <p class="lede">Real job photos from our crews across Central Florida — paver driveways, marble and travertine pool decks, raised terraces and entry steps. See how the work is finished before you request an estimate.</p>
     <div class="gallery" style="margin-top:26px">
 {figs}
     </div>

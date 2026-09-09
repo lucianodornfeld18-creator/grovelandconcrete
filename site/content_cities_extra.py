@@ -42,7 +42,7 @@ def _service_schema(area_served):
         "@type": "Service",
         "name": f"Concrete & Hardscape Planning — {area_served}",
         "areaServed": area_served,
-        "provider": {"@type": "Organization", "name": BUSINESS["legal_provider_placeholder"]},
+        "provider": {"@type": "Organization", "@id": "https://grovelandconcrete.com/#organization", "name": "Groveland Concrete", "url": "https://grovelandconcrete.com"},
     }
 
 

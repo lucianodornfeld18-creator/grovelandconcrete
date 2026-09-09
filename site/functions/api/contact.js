@@ -142,8 +142,8 @@ export async function onRequestPost(context) {
     service: field(form, "service"),
     city: field(form, "city"),
     message: field(form, "message"),
-    // Consent is stated in the disclosure text next to every form ("By submitting,
-    // you agree your request may be forwarded…"); submitting the form is the consent.
+    // Consent is stated in the text next to every form ("By submitting, you agree
+    // Groveland Concrete may contact you…"); submitting the form is the consent.
     consent: true,
     page_url: field(form, "page_url").slice(0, LIMITS.page_url),
     referrer: (request.headers.get("referer") || "").slice(0, LIMITS.page_url),

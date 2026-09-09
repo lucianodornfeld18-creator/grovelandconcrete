@@ -21,7 +21,7 @@ def get_pages():
     <div>
       <span class="eyebrow">South Lake County, FL — Groveland · Mascotte · Minneola · Howey-in-the-Hills</span>
       <h1>Concrete planning for rural lots, long driveways, and RV &amp; boat pads.</h1>
-      <p class="lede">Groveland Concrete is a planning and request-routing resource for South Lake County property owners with acreage, long approaches, and outbuildings — not a generic city-by-city contractor directory. We focus on the questions a standard driveway page never answers: can a mixer truck actually reach your house, how thick does a pad need to be for an RV or boat trailer, and what does the base need to look like on Central Florida sand.</p>
+      <p class="lede">Groveland Concrete is a concrete and paving contractor built for South Lake County's large lots — acreage, long approaches, and outbuildings. We pour and install driveways, RV and boat pads, workshop slabs, patios, pavers, pool decks, walkways and retaining walls, and we answer the questions a standard driveway page never does: can our mixer truck actually reach your house, how thick does a pad need to be for an RV or boat trailer, and what does the base need to look like on Central Florida sand. Fully insured. Free estimates. Written workmanship warranty.</p>
       <div class="cta-row">
         <a class="btn btn-primary btn-lg" href="tel:{BUSINESS['phone_tel_placeholder']}">Call {BUSINESS['phone_placeholder']}</a>
         <a class="btn btn-outline btn-lg" href="/contact/">Request a free estimate</a>
@@ -71,7 +71,7 @@ def get_pages():
         </div>
         {turnstile_html()}
         <button class="btn btn-primary btn-lg" type="submit" style="width:100%;justify-content:center">Get My Free Estimate</button>
-        <p class="form-note" style="margin:6px 0 0;font-size:.74rem">By submitting, you agree your request may be forwarded to a provider serving your area.</p>
+        <p class="form-note" style="margin:6px 0 0;font-size:.74rem">By submitting, you agree Groveland Concrete may contact you about your project.</p>
         <div class="form-msg" role="status" aria-live="polite"></div>
       </form>
       <p class="form-note" style="margin-top:10px;text-align:center">Or call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a></p>
@@ -79,9 +79,9 @@ def get_pages():
   </div>
 </section>
 
-<section class="disclosure-wrap">
-  <div class="wrap">
-    <div class="disclosure-box">{BUSINESS['disclosure_short']}</div>
+<section class="tight trust-wrap">
+  <div class="wrap trust-strip">
+    {"".join(f'<span class="chip trust-chip">{t}</span>' for t in BUSINESS['trust_points'])}
   </div>
 </section>
 
@@ -89,7 +89,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Services</span>
     <h2>Concrete &amp; hardscape services for South Lake properties</h2>
-    <p class="lede">Every service below is confirmed with a real provider serving this area — nothing here is advertised without a matching, staffed capability.</p>
+    <p class="lede">Every service below is installed by our own crews — from a 4-inch reinforced driveway to a marble pool deck. Nothing on this list is subcontracted out or advertised without the equipment and people to do it.</p>
     <div class="grid grid-4" style="margin-top:26px">
       {services_cards}
     </div>
@@ -98,12 +98,12 @@ def get_pages():
 
 <section class="alt">
   <div class="wrap">
-    <span class="eyebrow">Why This Site Exists</span>
+    <span class="eyebrow">Why Groveland Concrete</span>
     <h2>Built for large lots and long driveways, not subdivisions</h2>
     <div class="grid grid-3" style="margin-top:26px">
       <div class="card">
         <h3>We start with access</h3>
-        <p>A concrete mixer truck weighs over 60,000 lb loaded and needs room to turn around. Most driveway pages skip this entirely — we don't, because on 5+ acre rural lots it's often the first real question.</p>
+        <p>A loaded mixer truck weighs over 60,000 lb and needs room to turn around. Most contractors don't bring it up until pour day — we check it on the first site walk, because on 5+ acre rural lots it's often the first real question.</p>
       </div>
       <div class="card">
         <h3>RV and boat pads get their own specs</h3>
@@ -111,7 +111,7 @@ def get_pages():
       </div>
       <div class="card">
         <h3>Honest permit guidance</h3>
-        <p>Groveland, unincorporated Lake County, and neighboring Sumter County each handle driveway and slab permits differently. Our <a href="/permits/">permit directory</a> links to the real building department for each — no guessing.</p>
+        <p>Groveland, unincorporated Lake County, and neighboring Sumter County each handle driveway and slab permits differently. We tell you up front which office your job goes through, and our <a href="/permits/">permit directory</a> links to the real building department for each — no guessing.</p>
       </div>
     </div>
   </div>
@@ -132,7 +132,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Service Area</span>
     <h2>Groveland &amp; South Lake County</h2>
-    <p class="lede">We focus on Groveland and the rural/large-lot communities around it. Other South Lake cities may be reachable — call to confirm before assuming coverage.</p>
+    <p class="lede">We're based in Groveland and work the rural and large-lot communities around it. Other South Lake cities may be reachable — call to confirm coverage for your address.</p>
     <div class="cta-row" style="margin-top:16px">{city_chips}</div>
   </div>
 </section>
@@ -140,7 +140,7 @@ def get_pages():
 <section>
   <div class="wrap" style="text-align:center">
     <h2>Ready to plan your project?</h2>
-    <p class="lede" style="margin:0 auto 20px">Tell us about your driveway, pad, or slab project and we'll route your request to a provider who covers your area.</p>
+    <p class="lede" style="margin:0 auto 20px">Tell us about your driveway, pad, slab, or paver project. We'll come out, probe the ground, check truck access, and put a line-itemized estimate in writing.</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-primary btn-lg" href="/contact/">Request a free estimate</a>
       <a class="btn btn-outline btn-lg" href="tel:{BUSINESS['phone_tel_placeholder']}">Call {BUSINESS['phone_placeholder']}</a>
@@ -163,7 +163,7 @@ def get_pages():
             "url": "https://grovelandconcrete.com",
             "publisher": {"@id": "https://grovelandconcrete.com/#organization"},
         }, {
-            # Organization only — this hub has no street address or GBP, so no LocalBusiness.
+            # Service-area business: no storefront address is published, so Organization (not LocalBusiness).
             "@context": "https://schema.org",
             "@type": "Organization",
             "@id": "https://grovelandconcrete.com/#organization",

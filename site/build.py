@@ -143,7 +143,7 @@ def write_llms_txt():
         f"Email: {BUSINESS['email_placeholder']}",
         "Service area: Groveland, Mascotte, Minneola, Howey-in-the-Hills, Clermont, Montverde and rural/unincorporated Lake County, Florida (South Lake County).",
         "Focus: rural lots, long driveways, RV and boat pads, workshop slabs, paver driveways and patios, pool decks, walkways and retaining walls — with Florida Building Code based specs (4-inch minimum slab, 4,000 PSI, rebar for vehicle loads, 1/8 in/ft drainage slope, 7/28-day cure).",
-        "Not a general contractor: requests are routed to a licensed provider serving the area.", "",
+        "Fully insured concrete and paving contractor (service-area business). Free estimates. Written workmanship warranty.", "",
     ]
     lines += block("Services", SERVICE_ORDER, SERVICES)
     lines += block("Service area pages", CITY_ORDER, CITIES)
@@ -151,7 +151,7 @@ def write_llms_txt():
     lines += block("Guides", GUIDE_ORDER, GUIDES)
     lines += block("Comparisons", COMPARISON_ORDER, COMPARISONS)
     lines += ["## Other pages", "",
-              f"- [Photo gallery]({BASE_URL}/gallery/): job photos from the provider (paver driveways, pool decks, walkways, retaining walls)",
+              f"- [Photo gallery]({BASE_URL}/gallery/): job photos (paver driveways, pool decks, walkways, retaining walls)",
               f"- [About]({BASE_URL}/about/)",
               f"- [Request a free estimate]({BASE_URL}/contact/)",
               f"- [Permit directory]({BASE_URL}/permits/): links to the building department for each jurisdiction in the service area",

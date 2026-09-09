@@ -26,7 +26,7 @@ def get_pages():
         "h1": "Services",
         "breadcrumbs": [("Home", "/"), ("Services", None)],
         "nav_active": "/services/",
-        "body_html": f'<div class="wrap" style="padding-bottom:60px"><p class="lede">Eight services, each confirmed with a real provider serving South Lake County — nothing advertised without a matching, staffed capability.</p><div class="grid grid-3" style="margin-top:24px">{_cards(SERVICE_ORDER, SERVICES)}</div><p style="margin-top:26px"><a class="card-link" href="/gallery/">See job photos in the gallery &rarr;</a></p></div>',
+        "body_html": f'<div class="wrap" style="padding-bottom:60px"><p class="lede">Nine services, all installed by Groveland Concrete crews across South Lake County — concrete, pavers, pool decks, and the walls and steps that go with them. Fully insured, free estimates, written workmanship warranty.</p><div class="grid grid-3" style="margin-top:24px">{_cards(SERVICE_ORDER, SERVICES)}</div><p style="margin-top:26px"><a class="card-link" href="/gallery/">See job photos in the gallery &rarr;</a></p></div>',
     })
 
     pages.append({
@@ -37,7 +37,7 @@ def get_pages():
         "breadcrumbs": [("Home", "/"), ("Service Area", None)],
         "nav_active": "/service-area/",
         "body_html": f'''<div class="wrap" style="padding-bottom:60px">
-  <p class="lede">We focus on Groveland and the rural, large-lot communities of South Lake County. Our Clermont and Montverde pages cover the acreage and lake-adjacent edges of those cities specifically — not their denser suburban cores, which a general contractor page is better suited for.</p>
+  <p class="lede">We focus on Groveland and the rural, large-lot communities of South Lake County. Our Clermont and Montverde pages cover the acreage and lake-adjacent edges of those cities specifically — the lots where truck access, long approaches, and drainage are the real questions.</p>
   <div class="grid grid-3" style="margin-top:24px">{_cards(CITY_ORDER, CITIES, desc_key=None)}</div>
 </div>''',
     })

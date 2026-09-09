@@ -34,7 +34,7 @@ def _service_schema(service_key):
         "@type": "Service",
         "name": svc["name"],
         "areaServed": "South Lake County, FL",
-        "provider": {"@type": "Organization", "name": BUSINESS["legal_provider_placeholder"]},
+        "provider": {"@type": "Organization", "@id": "https://grovelandconcrete.com/#organization", "name": "Groveland Concrete", "url": "https://grovelandconcrete.com"},
     }
 
 

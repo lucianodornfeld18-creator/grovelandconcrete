@@ -6,10 +6,11 @@ Nothing below is published with real values yet. The site works and builds with 
 
 | Placeholder | Where it's used | What to provide |
 |---|---|---|
-| `{{LEGAL_PROVIDER_AND_LICENSE_IF_REQUIRED}}` | `Service` schema `provider.name` on service pages | Legal name (and license number, if legally required for this kind of advertising) of the provider requests get routed to |
 | `{{TURNSTILE_SITE_KEY}}` | `_data.py` → rendered on the `/` hero form and `/contact/` form | Public site key from a Cloudflare Turnstile widget created for this domain. The widget is not rendered while this is the placeholder; set it together with `TURNSTILE_SECRET_KEY` on the Pages Function or every form submission will be rejected with 403. |
 
 ## Already filled in (2026-09-08)
+
+- Positioning (2026-09-09): Groveland Concrete presents as a concrete & paving contractor, same model as ocoeeconcrete/windermereconcrete. No "information resource" / "routed to a provider" language anywhere. Never say "general contractor", never "we are not", never a license number — Fully Insured / Free Estimates / Written Workmanship Warranty.
 
 - Email: `hello@grovelandconcrete.com` is a Cloudflare Email Routing alias forwarding to `opusdigitalmarketingflorida@gmail.com` (destination verified on the account). The contact worker's `CONTACT_DESTINATION` secret points at the same Gmail.
 
@@ -35,4 +36,3 @@ Nothing below is published with real values yet. The site works and builds with 
 
 - Confirm the Ocoee/GCM Best Services catalog files found on the old SSD (`Projetos\ocoeeconcrete`, `gcm-site`) are the current, authoritative version.
 - Palette tokens (`clay`/`ochre` etc.) still come from the retired Township Grid direction; the logo's own accent is orange `#F26A1B`-ish. Decide whether to shift `--clay`/`--ochre` toward the logo orange for buttons/links.
-- Legal review of `/contact/` disclosure language and whether the provider's name/license must appear before form submission in this jurisdiction.

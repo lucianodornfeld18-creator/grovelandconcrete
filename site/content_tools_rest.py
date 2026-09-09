@@ -590,7 +590,7 @@ def _permits_page():
 
     body_html = f'''
 <div class="wrap" style="padding-bottom:20px">
-  <p class="lede">Real links to the building/permit department for each jurisdiction in our South Lake County service area. {BUSINESS["disclosure_short"]}</p>
+  <p class="lede">Real links to the building/permit department for each jurisdiction in our South Lake County service area, so you know which office your project goes through before we pour.</p>
   <div class="disclosure-box">
     We link directly to each city or county's own building/permitting page below. We did not find a page for every jurisdiction that spells out the exact driveway-permit process (fees, inspections, what triggers a separate encroachment permit) &mdash; where that's the case, it's noted plainly rather than guessed at. Always confirm current requirements and fees directly with the department before you pour.
   </div>
