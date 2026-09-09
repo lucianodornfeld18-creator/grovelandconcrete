@@ -27,7 +27,7 @@ from _photos import gallery_section, photos_for, image_schema
 # route -> service key, so render_page can append the photo gallery to each service page
 _SERVICE_BY_ROUTE = {v["route"]: k for k, v in SERVICES.items()}
 
-DEFAULT_OG_IMAGE = "/static/brand/png/social-badge-512.png"
+DEFAULT_OG_IMAGE = "/static/brand/png/og-default.jpg"  # 1200x630, generated from the logo
 
 # Logo lockups (brand/png + brand/webp are the source; static/ holds the copies
 # the site serves). "-h160" / "-h400" are pre-downscaled renders so the header
@@ -213,11 +213,19 @@ def render_page(page: dict) -> str:
 <meta property="og:description" content="{_esc(page['meta_description'])}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{og_image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{PUBLIC_NAME} — concrete, paver and hardscape planning for South Lake County, FL">
 <meta property="og:site_name" content="{PUBLIC_NAME}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/static/brand/png/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/static/brand/png/favicon-192.png">
 <link rel="apple-touch-icon" href="/static/brand/png/favicon-192.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#F4F3ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1A16" media="(prefers-color-scheme: dark)">
+{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)">' if is_home else ''}
 <link rel="preload" as="image" href="{LOGO_HEADER['light_webp']}" type="image/webp" media="(prefers-color-scheme: light)">
 <link rel="preload" as="image" href="{LOGO_HEADER['dark_webp']}" type="image/webp" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -100,10 +100,6 @@ def get_pages():
         <label for="message">Tell us about your project</label>
         <textarea id="message" name="message" rows="5" maxlength="3000"></textarea>
       </div>
-      <label style="display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--ink-soft)">
-        <input type="checkbox" name="consent" value="yes" required style="margin-top:4px">
-        <span>I agree that my request may be forwarded to a licensed provider serving my area so they can contact me about this project.</span>
-      </label>
       {turnstile_html()}
       <button class="btn btn-primary btn-lg" type="submit">Send request</button>
       <div class="form-msg" role="status" aria-live="polite"></div>

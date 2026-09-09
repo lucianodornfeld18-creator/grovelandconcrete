@@ -69,12 +69,9 @@ def get_pages():
           <label for="hero-city">City / area</label>
           <input type="text" id="hero-city" name="city" maxlength="120" placeholder="City or ZIP">
         </div>
-        <label class="hero-consent" for="hero-consent">
-          <input type="checkbox" id="hero-consent" name="consent" value="yes" required>
-          <span>I agree my request may be forwarded to a provider serving my area.</span>
-        </label>
         {turnstile_html()}
         <button class="btn btn-primary btn-lg" type="submit" style="width:100%;justify-content:center">Get My Free Estimate</button>
+        <p class="form-note" style="margin:6px 0 0;font-size:.74rem">By submitting, you agree your request may be forwarded to a provider serving your area.</p>
         <div class="form-msg" role="status" aria-live="polite"></div>
       </form>
       <p class="form-note" style="margin-top:10px;text-align:center">Or call <a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a></p>
@@ -164,5 +161,19 @@ def get_pages():
             "@type": "WebSite",
             "name": "Groveland Concrete",
             "url": "https://grovelandconcrete.com",
+            "publisher": {"@id": "https://grovelandconcrete.com/#organization"},
+        }, {
+            # Organization only — this hub has no street address or GBP, so no LocalBusiness.
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://grovelandconcrete.com/#organization",
+            "name": "Groveland Concrete",
+            "url": "https://grovelandconcrete.com",
+            "logo": "https://grovelandconcrete.com/static/brand/png/logo-full-h400.png",
+            "image": "https://grovelandconcrete.com/static/brand/png/og-default.jpg",
+            "telephone": BUSINESS["phone_tel_placeholder"],
+            "email": BUSINESS["email_placeholder"],
+            "areaServed": [{"@type": "City", "name": CITIES[c]["name"]} for c in CITY_ORDER if CITIES[c]["kind"] != "area"] + [{"@type": "AdministrativeArea", "name": "Lake County, Florida"}],
+            "description": BUSINESS["disclosure_short"],
         }],
     }]

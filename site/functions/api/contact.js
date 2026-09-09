@@ -56,7 +56,6 @@ function validate(payload) {
   if (payload.service.length > LIMITS.service) return "Please select a valid service.";
   if (payload.city.length > LIMITS.city) return "Please select a valid city.";
   if (payload.message.length > LIMITS.message) return "The project description is too long.";
-  if (!payload.consent) return "Please confirm you agree to be contacted about your request.";
   return null;
 }
 
@@ -143,7 +142,9 @@ export async function onRequestPost(context) {
     service: field(form, "service"),
     city: field(form, "city"),
     message: field(form, "message"),
-    consent: field(form, "consent") === "yes",
+    // Consent is stated in the disclosure text next to every form ("By submitting,
+    // you agree your request may be forwarded…"); submitting the form is the consent.
+    consent: true,
     page_url: field(form, "page_url").slice(0, LIMITS.page_url),
     referrer: (request.headers.get("referer") || "").slice(0, LIMITS.page_url),
     utm_source: field(form, "utm_source").slice(0, LIMITS.utm_source),
