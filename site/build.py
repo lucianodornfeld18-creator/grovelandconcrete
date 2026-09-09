@@ -8,6 +8,7 @@ incrementally while parallel content modules are still being written.
 """
 import datetime
 import importlib
+import json
 import pathlib
 import shutil
 import subprocess
@@ -159,11 +160,9 @@ def write_llms_txt():
 
 
 def write_favicon_and_manifest():
-    from PIL import Image
-    src = ROOT / "static" / "brand" / "png"
-    ico_sizes = [(16, 16), (32, 32), (48, 48)]
-    base = Image.open(src / "favicon-48.png").convert("RGBA")
-    base.save(DIST / "favicon.ico", format="ICO", sizes=ico_sizes)
+    # favicon.ico is pre-generated (static/favicon.ico, 16/32/48 px from the logo) so the
+    # Cloudflare Pages build image doesn't need Pillow; it must live at the site root.
+    shutil.copy(ROOT / "static" / "favicon.ico", DIST / "favicon.ico")
     manifest = {
         "name": PUBLIC_NAME, "short_name": "Groveland Concrete", "start_url": "/", "display": "browser",
         "background_color": "#F4F3ED", "theme_color": "#F4F3ED",
@@ -172,8 +171,7 @@ def write_favicon_and_manifest():
             {"src": "/static/brand/png/favicon-512.png", "sizes": "512x512", "type": "image/png"},
         ],
     }
-    import json as _json
-    (DIST / "site.webmanifest").write_text(_json.dumps(manifest, indent=2), encoding="utf-8")
+    (DIST / "site.webmanifest").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
 
 def write_headers_and_redirects():
