@@ -37,7 +37,9 @@ def _minify_css(css: str) -> str:
 # Fonts + stylesheet are inlined into every page: one fewer render-blocking
 # request each (and no cross-origin Google Fonts round trip). ~14 KB per page.
 INLINE_CSS = _minify_css((_STATIC / "fonts" / "fonts.css").read_text(encoding="utf-8") + "\n" + (_STATIC / "styles.css").read_text(encoding="utf-8"))
-PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-plex-sans-400-latin.woff2"]
+PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2"]  # display font only; body font is discovered from the inline CSS
+# Content-hashed script name so /static/site.<hash>.js can be cached immutably for a year.
+SITE_JS = "/static/site." + __import__("hashlib").md5((_STATIC / "site.js").read_bytes()).hexdigest()[:10] + ".js"
 
 # route -> service key, so render_page can append the photo gallery to each service page
 _SERVICE_BY_ROUTE = {v["route"]: k for k, v in SERVICES.items()}
@@ -276,7 +278,7 @@ def render_page(page: dict) -> str:
 {body_html}
 </main>
 {footer_html()}
-<script src="/static/site.js" defer></script>
+<script src="{SITE_JS}" defer></script>
 </body>
 </html>
 """

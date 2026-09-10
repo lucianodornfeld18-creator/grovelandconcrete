@@ -81,6 +81,9 @@ def write_static():
     if static_dst.exists():
         shutil.rmtree(static_dst)
     shutil.copytree(static_src, static_dst)
+    # hashed copy of site.js (name computed in templates.SITE_JS) for immutable caching
+    from templates import SITE_JS
+    shutil.copy(static_src / "site.js", DIST / SITE_JS.lstrip("/"))
 
 
 def write_robots():
@@ -241,7 +244,10 @@ def write_headers_and_redirects():
   Cache-Control: public, max-age=31536000, immutable
 
 /static/brand/*
-  Cache-Control: public, max-age=2592000
+  Cache-Control: public, max-age=31536000, immutable
+
+/static/site.*.js
+  Cache-Control: public, max-age=31536000, immutable
 
 /static/styles.css
   Cache-Control: public, max-age=86400
