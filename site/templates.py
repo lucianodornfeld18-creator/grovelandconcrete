@@ -37,7 +37,10 @@ def _minify_css(css: str) -> str:
 # Fonts + stylesheet are inlined into every page: one fewer render-blocking
 # request each (and no cross-origin Google Fonts round trip). ~14 KB per page.
 INLINE_CSS = _minify_css((_STATIC / "fonts" / "fonts.css").read_text(encoding="utf-8") + "\n" + (_STATIC / "styles.css").read_text(encoding="utf-8"))
-PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2"]  # display font only; body font is discovered from the inline CSS
+PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-plex-sans-var-latin.woff2"]  # display + body (variable) — preloading both makes the font swap happen right after first paint
+# Phone-size hero background embedded as a data URI on the home page only: the LCP
+# image then needs no extra request and paints with the first frame.
+HERO_INLINE_CSS = ".hero{background-image:linear-gradient(180deg,rgba(18,17,15,.84) 0%,rgba(18,17,15,.72) 55%,rgba(18,17,15,.9) 100%),url(data:image/webp;base64," + __import__("base64").b64encode((_STATIC / "images" / "hero-concrete-texture-inline.webp").read_bytes()).decode() + ")}"
 # Content-hashed script name so /static/site.<hash>.js can be cached immutably for a year.
 SITE_JS = "/static/site." + __import__("hashlib").md5((_STATIC / "site.js").read_bytes()).hexdigest()[:10] + ".js"
 
@@ -266,8 +269,9 @@ def render_page(page: dict) -> str:
 <meta name="theme-color" content="#F4F3ED" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1A16" media="(prefers-color-scheme: dark)">
 {"".join(f'<link rel="preload" as="font" type="font/woff2" href="{f}" crossorigin>' for f in PRELOAD_FONTS)}
-{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-720.webp" type="image/webp" media="(max-width: 720px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)" fetchpriority="high">' if is_home else ''}
+{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)" fetchpriority="high">' if is_home else ''}
 <style>{INLINE_CSS}</style>
+{f'<style>@media (max-width:720px){{{HERO_INLINE_CSS}}}</style>' if is_home else ''}
 <script type="application/ld+json">{json.dumps(schema_objects, ensure_ascii=False)}</script>
 </head>
 <body>
