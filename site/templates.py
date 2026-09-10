@@ -43,9 +43,9 @@ PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-
 _HERO_DATA = "url(data:image/webp;base64," + __import__("base64").b64encode((_STATIC / "images" / "hero-concrete-texture-inline.webp").read_bytes()).decode() + ")"
 _HERO_GRAD = "linear-gradient(180deg,rgba(18,17,15,.80) 0%,rgba(18,17,15,.66) 55%,rgba(18,17,15,.86) 100%)"
 HERO_INLINE_CSS = (
-    f".hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1920.webp),{_HERO_DATA};background-size:cover,cover,cover;background-position:center 55%}}"
-    f"@media (max-width:1200px){{.hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1200.webp),{_HERO_DATA}}}}}"
-    f"@media (max-width:720px){{.hero{{background-image:{_HERO_GRAD},{_HERO_DATA}}}}}"
+    f".hero{{--hero-lqip:{_HERO_DATA};background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1920.webp),var(--hero-lqip);background-size:cover,cover,cover;background-position:center 55%}}"
+    f"@media (max-width:1200px){{.hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1200.webp),var(--hero-lqip)}}}}"
+    f"@media (max-width:720px){{.hero{{background-image:{_HERO_GRAD},var(--hero-lqip)}}}}"
 )
 # Content-hashed script name so /static/site.<hash>.js can be cached immutably for a year.
 SITE_JS = "/static/site." + __import__("hashlib").md5((_STATIC / "site.js").read_bytes()).hexdigest()[:10] + ".js"
