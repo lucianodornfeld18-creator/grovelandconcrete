@@ -37,8 +37,8 @@ def _page(key, meta_description, body_html, schema=None):
         "title": c["name"],
         "meta_description": meta_description,
         "h1": c["name"],
-        "breadcrumbs": [("Home", "/"), ("Guides", "/guides/"), (c["name"], None)],
-        "nav_active": "/guides/",
+        "breadcrumbs": [("Home", "/"), ("Blog", "/blog/"), (c["name"], None)],
+        "nav_active": "/blog/",
         "body_html": body_html,
     }
     if schema:
@@ -79,7 +79,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Why Rebar Wins for Driveways</span>
     <h2>It's not about strength on day one — it's about what happens after</h2>
-    <p>Both materials are meant to do the same basic job: hold concrete together across the crack that's going to happen eventually (see our <a href="/guides/why-concrete-driveway-cracking/">cracking guide</a> for why cracking is normal, not a failure). The difference is what happens in practice. Rebar is rigid enough to be set on chairs and tied into a grid that keeps its position through the pour, placing it at the correct depth within the slab where it can actually resist the two sides of a future crack pulling apart. Wire mesh is thin and springy — it's genuinely difficult to keep it from getting stepped on, walked over, or simply sinking as concrete is poured and worked around it, unless a crew is deliberately pulling it up into position as they go. Once it's settled near the bottom of the slab instead of mid-depth, it's not doing the job it was installed for.</p>
+    <p>Both materials are meant to do the same basic job: hold concrete together across the crack that's going to happen eventually (see our <a href="/blog/why-concrete-driveway-cracking/">cracking guide</a> for why cracking is normal, not a failure). The difference is what happens in practice. Rebar is rigid enough to be set on chairs and tied into a grid that keeps its position through the pour, placing it at the correct depth within the slab where it can actually resist the two sides of a future crack pulling apart. Wire mesh is thin and springy — it's genuinely difficult to keep it from getting stepped on, walked over, or simply sinking as concrete is poured and worked around it, unless a crew is deliberately pulling it up into position as they go. Once it's settled near the bottom of the slab instead of mid-depth, it's not doing the job it was installed for.</p>
     <p>That practical reality — not a lab test — is the main reason rebar is the more reliable choice for anything carrying vehicle loads, and it's part of why some municipalities have moved to require it (or at minimum, won't sign off on wire mesh alone) for driveways specifically.</p>
   </div>
 </section>
@@ -122,7 +122,7 @@ def get_pages():
         <tr><td>Visible cracking</td><td>A solid slab shows cracks as a continuous line across the surface</td><td>Individual units can shift or settle without a visible "crack" the way a slab shows one</td></tr>
         <tr><td>Repair approach</td><td>Patch, resurface, or replace the affected section — repairs can be visible against the original pour</td><td>Lift and reset or swap individual units — often blends in better than a concrete patch</td></tr>
         <tr><td>Drainage</td><td>Relies entirely on slope, since the surface is solid</td><td>Joints between units allow some water infiltration in addition to surface slope</td></tr>
-        <tr><td>Base preparation</td><td>Compacted base required either way</td><td>Compacted base required either way — sandy Central Florida soil matters for both (see our <a href="/guides/best-base-sandy-soil-florida/">base prep guide</a>)</td></tr>
+        <tr><td>Base preparation</td><td>Compacted base required either way</td><td>Compacted base required either way — sandy Central Florida soil matters for both (see our <a href="/blog/best-base-sandy-soil-florida/">base prep guide</a>)</td></tr>
         <tr><td>Ongoing maintenance</td><td>Occasional sealing, joint cleaning</td><td>Periodic joint-sand refresh and weed/ant control between units</td></tr>
         <tr><td>Long-term cost picture</td><td>Lower upfront, repairs less "invisible"</td><td>Higher upfront, competitor claim is lower maintenance cost over roughly 20 years — not independently verified here</td></tr>
       </tbody>
@@ -143,7 +143,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">What Actually Drives the Decision</span>
     <h2>Budget now vs. a different maintenance profile later</h2>
-    <p>For most South Lake County projects, this comes down to upfront budget against a willingness to do different (not necessarily less) ongoing maintenance. Concrete costs less to install and its cracking, when it happens, is normal and manageable (see our <a href="/guides/why-concrete-driveway-cracking/">cracking guide</a>) — but a crack is visible as a crack. Pavers cost more upfront and trade that for a repair process that can look cleaner section-by-section, plus periodic joint maintenance concrete doesn't need. Neither is objectively "better" — they're different trade-offs.</p>
+    <p>For most South Lake County projects, this comes down to upfront budget against a willingness to do different (not necessarily less) ongoing maintenance. Concrete costs less to install and its cracking, when it happens, is normal and manageable (see our <a href="/blog/why-concrete-driveway-cracking/">cracking guide</a>) — but a crack is visible as a crack. Pavers cost more upfront and trade that for a repair process that can look cleaner section-by-section, plus periodic joint maintenance concrete doesn't need. Neither is objectively "better" — they're different trade-offs.</p>
   </div>
 </section>
 '''.strip() + _cta(

@@ -23,6 +23,21 @@ from _data import (
     TURNSTILE_SITE_KEY,
 )
 from _photos import gallery_section, photos_for, image_schema
+from _seo import title_for, description_for
+
+_STATIC = __import__("pathlib").Path(__file__).resolve().parent / "static"
+
+
+def _minify_css(css: str) -> str:
+    css = __import__("re").sub(r"/\*.*?\*/", "", css, flags=__import__("re").S)
+    css = __import__("re").sub(r"\s*\n\s*", "", css)
+    return __import__("re").sub(r"\s*([{}:;,>])\s*", r"\1", css).replace(";}", "}")
+
+
+# Fonts + stylesheet are inlined into every page: one fewer render-blocking
+# request each (and no cross-origin Google Fonts round trip). ~14 KB per page.
+INLINE_CSS = _minify_css((_STATIC / "fonts" / "fonts.css").read_text(encoding="utf-8") + "\n" + (_STATIC / "styles.css").read_text(encoding="utf-8"))
+PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-plex-sans-400-latin.woff2"]
 
 # route -> service key, so render_page can append the photo gallery to each service page
 _SERVICE_BY_ROUTE = {v["route"]: k for k, v in SERVICES.items()}
@@ -40,6 +55,12 @@ LOGO_HEADER = {
     "dark_png": "/static/brand/png/logo-horizontal-dark-h160.png",
     "width": 943, "height": 160,
 }
+# srcset pairs (566w = h96 render for phones, 943w = h160 for desktop) and the
+# CSS pixel widths the logo is actually displayed at (see --logo-h in styles.css).
+LOGO_SIZES = "(max-width:400px) 248px, (max-width:860px) 283px, (max-width:1060px) 318px, 377px"
+def _logo_srcset(kind):  # kind: light_webp / dark_webp / light_png / dark_png
+    base = LOGO_HEADER[kind].replace("-h160.", "-h96.")
+    return f"{base} 566w, {LOGO_HEADER[kind]} 943w"
 LOGO_FOOTER = {
     "webp": "/static/brand/webp/logo-full-dark-h400.webp",
     "png": "/static/brand/png/logo-full-dark-h400.png",
@@ -83,10 +104,10 @@ def header_html(active_route: str = "") -> str:
   <div class="wrap header-row">
     <a class="brand" href="/" aria-label="{PUBLIC_NAME} — home">
       <picture>
-        <source srcset="{LOGO_HEADER['dark_webp']}" media="(prefers-color-scheme: dark)" type="image/webp">
-        <source srcset="{LOGO_HEADER['dark_png']}" media="(prefers-color-scheme: dark)" type="image/png">
-        <source srcset="{LOGO_HEADER['light_webp']}" type="image/webp">
-        <img class="brand-logo" src="{LOGO_HEADER['light_png']}" width="{LOGO_HEADER['width']}" height="{LOGO_HEADER['height']}" alt="{PUBLIC_NAME}" fetchpriority="high">
+        <source srcset="{_logo_srcset('dark_webp')}" sizes="{LOGO_SIZES}" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="{_logo_srcset('dark_png')}" sizes="{LOGO_SIZES}" media="(prefers-color-scheme: dark)" type="image/png">
+        <source srcset="{_logo_srcset('light_webp')}" sizes="{LOGO_SIZES}" type="image/webp">
+        <img class="brand-logo" src="{LOGO_HEADER['light_png']}" srcset="{_logo_srcset('light_png')}" sizes="{LOGO_SIZES}" width="{LOGO_HEADER['width']}" height="{LOGO_HEADER['height']}" alt="{PUBLIC_NAME}" fetchpriority="high" decoding="async">
       </picture>
     </a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
@@ -122,15 +143,15 @@ def footer_html() -> str:
       <p class="footer-disclosure">{_esc(BUSINESS["disclosure_short"])}</p>
     </div>
     <div class="footer-col">
-      <h3>Services</h3>
+      <h2>Services</h2>
       <ul>{service_links}</ul>
     </div>
     <div class="footer-col">
-      <h3>Service Area</h3>
+      <h2>Service Area</h2>
       <ul>{city_links}</ul>
     </div>
     <div class="footer-col">
-      <h3>Contact</h3>
+      <h2>Contact</h2>
       <ul>
         <li><a href="tel:{BUSINESS['phone_tel_placeholder']}">{BUSINESS['phone_placeholder']}</a></li>
         <li><a href="mailto:{BUSINESS['email_placeholder']}">{BUSINESS['email_placeholder']}</a></li>
@@ -172,7 +193,8 @@ def breadcrumb_schema(crumbs, base_url: str):
 def render_page(page: dict) -> str:
     route = page["route"]
     is_home = page.get("is_home", False)
-    title = page["title"] if is_home else f'{page["title"]} | {PUBLIC_NAME}'
+    title = title_for(route, page["title"], is_home)
+    meta_description = description_for(route, page["meta_description"])
     canonical = BASE_URL + route
     og_image = BASE_URL + page.get("og_image", DEFAULT_OG_IMAGE)
     h1 = page.get("h1", page["title"])
@@ -187,9 +209,25 @@ def render_page(page: dict) -> str:
         "@type": "WebPage",
         "name": page["title"],
         "url": canonical,
-        "description": page["meta_description"],
+        "description": meta_description,
     })
     schema_objects.extend(page.get("schema", []))
+    if route.startswith("/blog/") and route != "/blog/" or route.startswith("/compare/"):
+        schema_objects.append({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": page.get("h1", page["title"]),
+            "description": meta_description,
+            "url": canonical,
+            "mainEntityOfPage": canonical,
+            "datePublished": page.get("_published", "2026-09-08"),
+            "dateModified": page.get("_lastmod", page.get("_published", "2026-09-08")),
+            "author": {"@type": "Organization", "@id": "https://grovelandconcrete.com/#organization", "name": PUBLIC_NAME},
+            "publisher": {"@type": "Organization", "@id": "https://grovelandconcrete.com/#organization", "name": PUBLIC_NAME,
+                          "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/static/brand/png/logo-full-h400.png"}},
+            "image": og_image,
+            "inLanguage": "en-US",
+        })
 
     active_route = page.get("nav_active", "")
     body_html = page["body_html"]
@@ -205,12 +243,12 @@ def render_page(page: dict) -> str:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{_esc(title)}</title>
-<meta name="description" content="{_esc(page['meta_description'])}">
+<meta name="description" content="{_esc(meta_description)}">
 <link rel="canonical" href="{canonical}">
 <meta name="robots" content="{robots}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{_esc(title)}">
-<meta property="og:description" content="{_esc(page['meta_description'])}">
+<meta property="og:description" content="{_esc(meta_description)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:image" content="{og_image}">
 <meta property="og:image:width" content="1200">
@@ -225,13 +263,9 @@ def render_page(page: dict) -> str:
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#F4F3ED" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1A16" media="(prefers-color-scheme: dark)">
-{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)">' if is_home else ''}
-<link rel="preload" as="image" href="{LOGO_HEADER['light_webp']}" type="image/webp" media="(prefers-color-scheme: light)">
-<link rel="preload" as="image" href="{LOGO_HEADER['dark_webp']}" type="image/webp" media="(prefers-color-scheme: dark)">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fjalla+One&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="/static/styles.css">
+{"".join(f'<link rel="preload" as="font" type="font/woff2" href="{f}" crossorigin>' for f in PRELOAD_FONTS)}
+{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-720.webp" type="image/webp" media="(max-width: 720px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)" fetchpriority="high">' if is_home else ''}
+<style>{INLINE_CSS}</style>
 <script type="application/ld+json">{json.dumps(schema_objects, ensure_ascii=False)}</script>
 </head>
 <body>
@@ -242,7 +276,7 @@ def render_page(page: dict) -> str:
 {body_html}
 </main>
 {footer_html()}
-<script src="/static/site.js"></script>
+<script src="/static/site.js" defer></script>
 </body>
 </html>
 """

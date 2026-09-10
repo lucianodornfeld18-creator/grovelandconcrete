@@ -121,7 +121,7 @@ def get_pages():
     </form>
   </div>
   <aside class="card" style="align-self:start">
-    <h3>What happens next</h3>
+    <h2 class="card-title">What happens next</h2>
     <ol style="padding-left:20px;color:var(--ink-soft)">
       <li>We call or email back, typically within one business day, to set up a free site visit.</li>
       <li>On site we probe the ground, measure the approach, and check mixer-truck access.</li>

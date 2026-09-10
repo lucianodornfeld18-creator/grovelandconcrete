@@ -10,7 +10,7 @@ from _data import (
 def _cards(order, registry, desc_key="short"):
     return "\n".join(
         f'''<div class="card">
-          <h3><a href="{registry[k]["route"]}">{registry[k]["name"]}</a></h3>
+          <h2 class="card-title"><a href="{registry[k]["route"]}">{registry[k]["name"]}</a></h2>
           {f'<p>{registry[k][desc_key]}</p>' if registry[k].get(desc_key) else ""}
         </div>''' for k in order
     )
@@ -55,12 +55,12 @@ def get_pages():
     guide_and_compare_order = list(GUIDE_ORDER) + list(COMPARISON_ORDER)
     guide_and_compare_registry = {**GUIDES, **COMPARISONS}
     pages.append({
-        "route": "/guides/",
-        "title": "Guides & Comparisons",
+        "route": "/blog/",
+        "title": "Blog: Guides & Comparisons",
         "meta_description": "Educational guides and side-by-side comparisons for concrete and hardscape decisions in South Lake County, FL.",
-        "h1": "Guides & Comparisons",
-        "breadcrumbs": [("Home", "/"), ("Guides", None)],
-        "nav_active": "/guides/",
+        "h1": "Blog: Guides & Comparisons",
+        "breadcrumbs": [("Home", "/"), ("Blog", None)],
+        "nav_active": "/blog/",
         "body_html": f'<div class="wrap" style="padding-bottom:60px"><div class="grid grid-2" style="margin-top:10px">{_cards(guide_and_compare_order, guide_and_compare_registry, desc_key=None)}</div></div>',
     })
 

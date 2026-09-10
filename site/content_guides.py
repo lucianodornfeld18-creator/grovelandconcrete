@@ -56,8 +56,8 @@ def _page(key, meta_description, body_html, schema=None):
         "title": g["name"],
         "meta_description": meta_description,
         "h1": g["name"],
-        "breadcrumbs": [("Home", "/"), ("Guides", "/guides/"), (g["name"], None)],
-        "nav_active": "/guides/",
+        "breadcrumbs": [("Home", "/"), ("Blog", "/blog/"), (g["name"], None)],
+        "nav_active": "/blog/",
         "body_html": body_html,
     }
     if schema:
@@ -114,7 +114,7 @@ def get_pages():
         "Get real numbers for your driveway's actual length",
         [
             ("/tools/driveway-cost-calculator/", "Estimate cost &amp; volume", "btn-primary"),
-            ("/guides/concrete-truck-access-rural-driveway/", "Check truck access first", "btn-outline"),
+            ("/blog/concrete-truck-access-rural-driveway/", "Check truck access first", "btn-outline"),
         ],
     )
     pages.append(_page(
@@ -175,7 +175,7 @@ def get_pages():
         "Don't find out on pour day",
         [
             ("/tools/site-access-checklist/", "Run the site-access checklist", "btn-primary"),
-            ("/guides/long-driveway-cost-florida/", "See long-driveway cost factors", "btn-outline"),
+            ("/blog/long-driveway-cost-florida/", "See long-driveway cost factors", "btn-outline"),
         ],
     )
     pages.append(_page(
@@ -195,7 +195,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Upfront Cost</span>
     <h2>Gravel wins the first invoice</h2>
-    <p>A gravel driveway is materially cheaper to install than a concrete one, especially at rural lengths where concrete's per-foot cost adds up fast (see our <a href="/guides/long-driveway-cost-florida/">long driveway cost guide</a> for the concrete side of that math). If the goal is simply "get a passable driveway in place now," gravel usually gets there for less money.</p>
+    <p>A gravel driveway is materially cheaper to install than a concrete one, especially at rural lengths where concrete's per-foot cost adds up fast (see our <a href="/blog/long-driveway-cost-florida/">long driveway cost guide</a> for the concrete side of that math). If the goal is simply "get a passable driveway in place now," gravel usually gets there for less money.</p>
   </div>
 </section>
 
@@ -212,7 +212,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">The Base Matters Either Way</span>
     <h2>Whichever surface you choose, sandy soil is still the variable</h2>
-    <p>This is the part that gets missed in a "which surface is better" framing: the base preparation question doesn't go away if you pick gravel, and it doesn't get any easier if you pick concrete. Either way, you're building on the same sandy Central Florida soil, and either way, an inconsistent base shows up later as a problem — ruts and low spots for gravel, cracking and settling for concrete. See <a href="/guides/best-base-sandy-soil-florida/">our sandy-soil base prep guide</a> before you commit to either surface.</p>
+    <p>This is the part that gets missed in a "which surface is better" framing: the base preparation question doesn't go away if you pick gravel, and it doesn't get any easier if you pick concrete. Either way, you're building on the same sandy Central Florida soil, and either way, an inconsistent base shows up later as a problem — ruts and low spots for gravel, cracking and settling for concrete. See <a href="/blog/best-base-sandy-soil-florida/">our sandy-soil base prep guide</a> before you commit to either surface.</p>
   </div>
 </section>
 '''.strip() + _cta(
@@ -348,7 +348,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Why Sandy Soil Behaves Differently</span>
     <h2>Fast drainage, less predictable compaction</h2>
-    <p>Sandy soil drains quickly, which sounds like a straightforward advantage — less water sitting under a slab than you'd get with heavy clay. The tradeoff is that sand compacts less predictably than clay-based soil and can shift under load over time if it isn't properly consolidated before the pour. A base that looks solid on pour day can settle unevenly months later if it wasn't compacted correctly, and an uneven base is one of the more common root causes behind a driveway that develops cracking or a noticeable dip well after installation (see our <a href="/guides/why-concrete-driveway-cracking/">cracking guide</a> for the fuller picture).</p>
+    <p>Sandy soil drains quickly, which sounds like a straightforward advantage — less water sitting under a slab than you'd get with heavy clay. The tradeoff is that sand compacts less predictably than clay-based soil and can shift under load over time if it isn't properly consolidated before the pour. A base that looks solid on pour day can settle unevenly months later if it wasn't compacted correctly, and an uneven base is one of the more common root causes behind a driveway that develops cracking or a noticeable dip well after installation (see our <a href="/blog/why-concrete-driveway-cracking/">cracking guide</a> for the fuller picture).</p>
   </div>
 </section>
 
@@ -375,7 +375,7 @@ def get_pages():
         "Planning a pour on a sandy Central Florida lot?",
         [
             ("/concrete-driveways/", "See driveway specs", "btn-primary"),
-            ("/guides/why-concrete-driveway-cracking/", "Understand cracking causes", "btn-outline"),
+            ("/blog/why-concrete-driveway-cracking/", "Understand cracking causes", "btn-outline"),
         ],
     )
     pages.append(_page(
@@ -408,7 +408,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Cause #2</span>
     <h2>An inconsistent base underneath</h2>
-    <p>Cracks that don't follow joint lines, that step (one side of the crack sits higher than the other), or that appear alongside a dip or low spot usually trace back to the base, not the concrete mix. If the compacted base under the slab wasn't uniform — a common risk on Central Florida's sandy soil if it wasn't properly consolidated — parts of the slab can settle at different rates, and the slab cracks to accommodate that movement. See our <a href="/guides/best-base-sandy-soil-florida/">sandy-soil base guide</a> for what proper prep looks like.</p>
+    <p>Cracks that don't follow joint lines, that step (one side of the crack sits higher than the other), or that appear alongside a dip or low spot usually trace back to the base, not the concrete mix. If the compacted base under the slab wasn't uniform — a common risk on Central Florida's sandy soil if it wasn't properly consolidated — parts of the slab can settle at different rates, and the slab cracks to accommodate that movement. See our <a href="/blog/best-base-sandy-soil-florida/">sandy-soil base guide</a> for what proper prep looks like.</p>
   </div>
 </section>
 
@@ -431,7 +431,7 @@ def get_pages():
         "Not sure if a crack is cosmetic or structural?",
         [
             ("/concrete-repair-resurfacing/", "See repair &amp; resurfacing options", "btn-primary"),
-            ("/guides/repair-vs-replace-driveway/", "Read our repair-vs-replace guide", "btn-outline"),
+            ("/blog/repair-vs-replace-driveway/", "Read our repair-vs-replace guide", "btn-outline"),
         ],
     )
     pages.append(_page(
@@ -451,7 +451,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Rain and Humidity</span>
     <h2>What Florida's wet season actually does to a driveway</h2>
-    <p>Frequent heavy rain means water is repeatedly running across the slab and, on any driveway with less-than-ideal slope, potentially standing on it (see our <a href="/guides/fixing-flooding-sloped-driveway/">flooding guide</a> if that's already happening on yours). Persistent moisture combined with Central Florida's humidity is also a favorable environment for algae, mildew, and moss to take hold on a shaded or slow-draining section of concrete — a common, low-stakes cosmetic issue rather than a structural one, but one that's easy to prevent with routine cleaning and harder to remove once it's established.</p>
+    <p>Frequent heavy rain means water is repeatedly running across the slab and, on any driveway with less-than-ideal slope, potentially standing on it (see our <a href="/blog/fixing-flooding-sloped-driveway/">flooding guide</a> if that's already happening on yours). Persistent moisture combined with Central Florida's humidity is also a favorable environment for algae, mildew, and moss to take hold on a shaded or slow-draining section of concrete — a common, low-stakes cosmetic issue rather than a structural one, but one that's easy to prevent with routine cleaning and harder to remove once it's established.</p>
     <ul class="list-check">
       <li>Sweep or rinse off organic debris (leaves, pollen, grass clippings) regularly rather than letting it sit and hold moisture against the surface.</li>
       <li>Address standing water at its source (grading or drainage) rather than just cleaning the surface repeatedly — a driveway that pools water will keep growing algae no matter how often you scrub it.</li>
@@ -472,7 +472,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Heat</span>
     <h2>What we won't overstate here</h2>
-    <p class="disclosure-box">It's tempting to say Florida's heat is a major driver of long-term driveway wear, and the underlying mechanism — thermal expansion and contraction, plus faster surface drying that can stress a slab — is real concrete science. But we haven't found a study that quantifies how much worse Florida heat specifically makes driveway maintenance needs compared to a more temperate climate. See our <a href="/guides/why-concrete-driveway-cracking/">cracking guide</a> for the fuller, similarly honest treatment of that question. What we can say with confidence is that letting water sit and letting joints fill with debris are controllable factors regardless of what the heat is or isn't doing.</p>
+    <p class="disclosure-box">It's tempting to say Florida's heat is a major driver of long-term driveway wear, and the underlying mechanism — thermal expansion and contraction, plus faster surface drying that can stress a slab — is real concrete science. But we haven't found a study that quantifies how much worse Florida heat specifically makes driveway maintenance needs compared to a more temperate climate. See our <a href="/blog/why-concrete-driveway-cracking/">cracking guide</a> for the fuller, similarly honest treatment of that question. What we can say with confidence is that letting water sit and letting joints fill with debris are controllable factors regardless of what the heat is or isn't doing.</p>
   </div>
 </section>
 '''.strip() + _cta(
@@ -518,7 +518,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">Fixing It</span>
     <h2>Options once the slab is already down</h2>
-    <p>Regrading an existing slab's slope generally isn't realistic without replacing it — concrete doesn't get re-sloped in place. If the driveway itself is the problem, that becomes a conversation about whether a new pour (built to the correct slope this time) makes more sense than living with the drainage issue; see our <a href="/guides/repair-vs-replace-driveway/">repair vs. replace guide</a>. If the surrounding grade is really the issue — water running onto the driveway from higher ground nearby, rather than the slab itself being flat — the fix is often external to the slab entirely:</p>
+    <p>Regrading an existing slab's slope generally isn't realistic without replacing it — concrete doesn't get re-sloped in place. If the driveway itself is the problem, that becomes a conversation about whether a new pour (built to the correct slope this time) makes more sense than living with the drainage issue; see our <a href="/blog/repair-vs-replace-driveway/">repair vs. replace guide</a>. If the surrounding grade is really the issue — water running onto the driveway from higher ground nearby, rather than the slab itself being flat — the fix is often external to the slab entirely:</p>
     <ul class="list-check">
       <li><strong>Channel drains</strong> across the low point of the driveway, tied into a drainage path.</li>
       <li><strong>Catch basins</strong> at the spot where water collects, connected to piping that carries it away.</li>
@@ -574,7 +574,7 @@ def get_pages():
       </tbody>
     </table>
     </div>
-    <p>See our <a href="/guides/why-concrete-driveway-cracking/">cracking causes guide</a> for the full explanation of what drives each of these.</p>
+    <p>See our <a href="/blog/why-concrete-driveway-cracking/">cracking causes guide</a> for the full explanation of what drives each of these.</p>
   </div>
 </section>
 
@@ -597,7 +597,7 @@ def get_pages():
       <li>Is the damage isolated to one section, or spread across the whole slab?</li>
       <li>Has the problem gotten visibly worse over the past year, or has it been stable?</li>
     </ul>
-    <p>For the full cost comparison between the two paths, see our <a href="/guides/resurfacing-vs-new-pour-cost/">resurfacing vs. new pour cost guide</a>.</p>
+    <p>For the full cost comparison between the two paths, see our <a href="/blog/resurfacing-vs-new-pour-cost/">resurfacing vs. new pour cost guide</a>.</p>
   </div>
 </section>
 
@@ -645,7 +645,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">What We Don't Have a Clean Number For</span>
     <h2>Being upfront about the resurfacing side</h2>
-    <p class="disclosure-box">We were not able to confirm a reliable, Florida-specific per-square-foot figure for resurfacing in this research — it's a real gap, not an oversight. What we can say with confidence: a resurfacing overlay skips full demolition and disposal, uses far less material than a new structural slab, and often skips the permit a new pour requires (see our <a href="/guides/repair-vs-replace-driveway/">repair vs. replace guide</a>). Those are real cost advantages. What we won't do is invent a specific dollar figure to make the comparison look cleaner than it is — get an actual quote for your driveway rather than relying on a generic percentage-of-replacement rule of thumb, since we don't have a source we trust for one.</p>
+    <p class="disclosure-box">We were not able to confirm a reliable, Florida-specific per-square-foot figure for resurfacing in this research — it's a real gap, not an oversight. What we can say with confidence: a resurfacing overlay skips full demolition and disposal, uses far less material than a new structural slab, and often skips the permit a new pour requires (see our <a href="/blog/repair-vs-replace-driveway/">repair vs. replace guide</a>). Those are real cost advantages. What we won't do is invent a specific dollar figure to make the comparison look cleaner than it is — get an actual quote for your driveway rather than relying on a generic percentage-of-replacement rule of thumb, since we don't have a source we trust for one.</p>
   </div>
 </section>
 
@@ -653,7 +653,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">The Catch</span>
     <h2>When resurfacing isn't actually the cheaper option</h2>
-    <p>An overlay bonds to and follows the shape of what's underneath it. If the underlying slab's problem is a failed or uneven base rather than surface wear, resurfacing doesn't fix that — it just puts a new face on the same structural issue, which tends to reappear. In that scenario, the money spent resurfacing is essentially added on top of an eventual replacement rather than instead of it, which is the opposite of a savings. This is exactly why the crack-reading exercise in our <a href="/guides/repair-vs-replace-driveway/">repair-vs-replace guide</a> matters before you commit to either path.</p>
+    <p>An overlay bonds to and follows the shape of what's underneath it. If the underlying slab's problem is a failed or uneven base rather than surface wear, resurfacing doesn't fix that — it just puts a new face on the same structural issue, which tends to reappear. In that scenario, the money spent resurfacing is essentially added on top of an eventual replacement rather than instead of it, which is the opposite of a savings. This is exactly why the crack-reading exercise in our <a href="/blog/repair-vs-replace-driveway/">repair-vs-replace guide</a> matters before you commit to either path.</p>
   </div>
 </section>
 '''.strip() + _cta(
@@ -687,7 +687,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">The Curb-Appeal Case</span>
     <h2>What a rough driveway does at a showing</h2>
-    <p>A cracked or uneven driveway is one of the first things a buyer sees, before they even reach the front door — and first impressions on a rural or large-lot property carry extra weight, since the drive itself is often a longer, more prominent part of the approach than it would be on a standard suburban lot. Cosmetic cracking, even when it's harmless shrinkage cracking (see our <a href="/guides/why-concrete-driveway-cracking/">cracking guide</a>), can read to a buyer as a sign of neglect or a bigger problem, whether or not that's actually true.</p>
+    <p>A cracked or uneven driveway is one of the first things a buyer sees, before they even reach the front door — and first impressions on a rural or large-lot property carry extra weight, since the drive itself is often a longer, more prominent part of the approach than it would be on a standard suburban lot. Cosmetic cracking, even when it's harmless shrinkage cracking (see our <a href="/blog/why-concrete-driveway-cracking/">cracking guide</a>), can read to a buyer as a sign of neglect or a bigger problem, whether or not that's actually true.</p>
   </div>
 </section>
 
@@ -695,7 +695,7 @@ def get_pages():
   <div class="wrap">
     <span class="eyebrow">The Honest Caveat</span>
     <h2>Resurfacing can hide a problem you'd rather disclose</h2>
-    <p>A home inspection during a sale can surface exactly the kind of base or settling issue that a thin resurfacing overlay is designed to cover cosmetically without fixing structurally (see our <a href="/guides/repair-vs-replace-driveway/">repair vs. replace guide</a>). If the driveway's real problem is a failed base rather than surface wear, resurfacing right before a sale risks looking like it was done to mask something — which is a worse outcome than an honestly cracked driveway with a fair price adjustment. Know which situation you're actually in before you resurface for a sale.</p>
+    <p>A home inspection during a sale can surface exactly the kind of base or settling issue that a thin resurfacing overlay is designed to cover cosmetically without fixing structurally (see our <a href="/blog/repair-vs-replace-driveway/">repair vs. replace guide</a>). If the driveway's real problem is a failed base rather than surface wear, resurfacing right before a sale risks looking like it was done to mask something — which is a worse outcome than an honestly cracked driveway with a fair price adjustment. Know which situation you're actually in before you resurface for a sale.</p>
   </div>
 </section>
 
@@ -710,7 +710,7 @@ def get_pages():
         "Preparing a property with an aging driveway for sale?",
         [
             ("/concrete-repair-resurfacing/", "See resurfacing options", "btn-primary"),
-            ("/guides/repair-vs-replace-driveway/", "Confirm it's a repair candidate first", "btn-outline"),
+            ("/blog/repair-vs-replace-driveway/", "Confirm it's a repair candidate first", "btn-outline"),
         ],
     )
     pages.append(_page(

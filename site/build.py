@@ -9,6 +9,7 @@ incrementally while parallel content modules are still being written.
 import datetime
 import importlib
 import json
+import re
 import pathlib
 import shutil
 import subprocess
@@ -59,6 +60,8 @@ def load_pages():
                 raise SystemExit(f"[build] DUPLICATE ROUTE: {route} in both {seen_routes[route]} and {mod_name}")
             seen_routes[route] = mod_name
             p["_module"] = mod_name
+            p["_lastmod"] = _git_date(ROOT / f"{mod_name}.py")
+            p["_published"] = _git_date(ROOT / f"{mod_name}.py", first=True)
             all_pages.append(p)
         print(f"[build] OK    {mod_name} -> {len(pages)} page(s)")
     return all_pages
@@ -100,15 +103,30 @@ Sitemap: {BASE_URL}/sitemap.xml
     (DIST / "robots.txt").write_text(content, encoding="utf-8")
 
 
-def _git_lastmod(path: pathlib.Path) -> str:
-    """Last commit date of the content module that produced a page (falls back to today)."""
+_GIT_CACHE = {}
+
+
+def _git_date(path: pathlib.Path, first: bool = False) -> str:
+    """Commit date of the content module that produced a page: last commit by
+    default, first commit (publish date) with first=True. Falls back to the
+    site launch date / today when git history is unavailable (shallow clone)."""
+    key = (str(path), first)
+    if key in _GIT_CACHE:
+        return _GIT_CACHE[key]
+    val = "2026-09-08" if first else datetime.date.today().isoformat()
     try:
-        out = subprocess.run(["git", "log", "-1", "--format=%cI", "--", str(path)], capture_output=True, text=True, cwd=ROOT, timeout=10).stdout.strip()
+        args = ["git", "log", "--format=%cI", "--follow", "--", str(path)] if first else ["git", "log", "-1", "--format=%cI", "--", str(path)]
+        out = subprocess.run(args, capture_output=True, text=True, cwd=ROOT, timeout=10).stdout.strip().splitlines()
         if out:
-            return out[:10]
+            val = (out[-1] if first else out[0])[:10]
     except Exception:
         pass
-    return datetime.date.today().isoformat()
+    _GIT_CACHE[key] = val
+    return val
+
+
+def _git_lastmod(path: pathlib.Path) -> str:
+    return _git_date(path)
 
 
 def write_sitemap(pages):
@@ -148,7 +166,7 @@ def write_llms_txt():
     lines += block("Services", SERVICE_ORDER, SERVICES)
     lines += block("Service area pages", CITY_ORDER, CITIES)
     lines += block("Planning tools & calculators", TOOL_ORDER, TOOLS)
-    lines += block("Guides", GUIDE_ORDER, GUIDES)
+    lines += block("Blog articles", GUIDE_ORDER, GUIDES)
     lines += block("Comparisons", COMPARISON_ORDER, COMPARISONS)
     lines += ["## Other pages", "",
               f"- [Photo gallery]({BASE_URL}/gallery/): job photos (paver driveways, pool decks, walkways, retaining walls)",
@@ -174,13 +192,50 @@ def write_favicon_and_manifest():
     (DIST / "site.webmanifest").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
 
+def _inline_script_hashes():
+    """sha256 hashes of every executable inline <script> in dist/ (the calculators),
+    so the CSP can allow them without 'unsafe-inline'. JSON-LD blocks are data,
+    not scripts, and need no hash."""
+    import base64, hashlib
+    hashes = set()
+    for f in DIST.rglob("*.html"):
+        html = f.read_text(encoding="utf-8")
+        for m in re.finditer(r"<script(?P<attrs>[^>]*)>(?P<body>.*?)</script>", html, flags=re.S):
+            attrs = m.group("attrs")
+            if "src=" in attrs or "application/ld+json" in attrs:
+                continue
+            body = m.group("body")
+            if body.strip():
+                hashes.add("'sha256-" + base64.b64encode(hashlib.sha256(body.encode("utf-8")).digest()).decode() + "'")
+    return sorted(hashes)
+
+
 def write_headers_and_redirects():
+    csp = "; ".join([
+        "default-src 'self'",
+        "script-src 'self' " + " ".join(_inline_script_hashes()) + " https://challenges.cloudflare.com https://static.cloudflareinsights.com",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+        "connect-src 'self' https://cloudflareinsights.com https://challenges.cloudflare.com",
+        "frame-src https://challenges.cloudflare.com",
+        "form-action 'self'",
+        "base-uri 'self'",
+        "object-src 'none'",
+        "frame-ancestors 'self'",
+        "upgrade-insecure-requests",
+    ])
     headers = f"""/*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: {csp}
+
+/static/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /static/images/*
   Cache-Control: public, max-age=31536000, immutable
@@ -204,6 +259,8 @@ def write_headers_and_redirects():
   Cache-Control: public, max-age=3600
 """
     (DIST / "_headers").write_text(headers, encoding="utf-8")
+    # Path redirects: the guides section moved to /blog/ on 2026-09-10.
+    (DIST / "_redirects").write_text("/guides/ /blog/ 301\n/guides/* /blog/:splat 301\n", encoding="utf-8")
     # NOTE: www -> apex cannot be done in Pages _redirects (source must be a path,
     # not a host). It is a zone Redirect Rule in the Cloudflare dashboard
     # (Rules > Redirect Rules > "Redirect from WWW to root"). Canonical tags

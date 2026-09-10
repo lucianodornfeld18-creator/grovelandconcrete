@@ -3,6 +3,20 @@ from _data import BUSINESS, SERVICES, SERVICE_ORDER, CITIES, CITY_ORDER, TOOLS
 from templates import turnstile_html
 from _photos import home_strip
 
+HOME_FAQS = [
+    ("Do you serve my area?",
+     "We're based in Groveland and work across South Lake County: Mascotte, Minneola, Clermont, Montverde, Howey-in-the-Hills and unincorporated Lake County. Call to confirm coverage for a rural address."),
+    ("How much does a concrete driveway cost in Groveland?",
+     "A standard driveway is priced by area, thickness, reinforcement and truck access; a long rural approach is priced by length. Our driveway calculator gives a planning range, and a free site visit turns it into a written, line-itemized estimate."),
+    ("Do I need a permit for a driveway or slab?",
+     "Usually yes for a new driveway, RV pad or slab. Groveland, unincorporated Lake County and Sumter County each handle it differently — we tell you which office your job goes through, and our permit directory links to each one."),
+    ("How thick should an RV or boat pad be?",
+     "5 to 6 inches of 4,000 PSI concrete with rebar, versus the 4-inch code minimum for a driveway, because a parked RV or boat trailer is a concentrated, stationary load rather than a rolling one."),
+    ("How soon can you come out?",
+     "We typically reply within one business day to set up a free site visit, and you'll have a written estimate shortly after. Light vehicles can use a new driveway after about 7 days; RVs and heavy loads after 28."),
+]
+
+
 def get_pages():
     services_cards = "\n".join(
         f'''<div class="card">
@@ -28,7 +42,7 @@ def get_pages():
       </div>
     </div>
     <div class="hero-panel hero-form-panel">
-      <h3 style="margin-bottom:4px">Request a Free Estimate</h3>
+      <h2 class="panel-title" style="margin-bottom:4px">Request a Free Estimate</h2>
       <p class="form-note" style="margin-bottom:16px">Tell us about your project — no obligation.</p>
       <form class="lead-form hero-form" action="/api/contact" method="POST">
         <label class="hp" for="hero-company">Company (leave blank)</label>
@@ -137,6 +151,16 @@ def get_pages():
   </div>
 </section>
 
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2>Straight answers before you call</h2>
+    <div class="faq-list" style="margin-top:10px">
+      {"".join(f'<details class="faq-item"><summary>{q}</summary><p>{a}</p></details>' for q, a in HOME_FAQS)}
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap" style="text-align:center">
     <h2>Ready to plan your project?</h2>
@@ -157,6 +181,10 @@ def get_pages():
         "nav_active": "/",
         "body_html": body_html,
         "schema": [{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in HOME_FAQS],
+        }, {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Groveland Concrete",

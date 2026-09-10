@@ -140,18 +140,18 @@ TOOLS = {
 TOOL_ORDER = list(TOOLS.keys())
 
 GUIDES = {
-    "long-driveway-cost-florida": {"name": "How Much a Long Driveway Really Costs in Florida", "route": "/guides/long-driveway-cost-florida/"},
-    "concrete-truck-access-rural-driveway": {"name": "Can a Concrete Truck Reach a House on a Long Rural Driveway?", "route": "/guides/concrete-truck-access-rural-driveway/"},
-    "concrete-vs-gravel-driveway-florida": {"name": "Concrete vs. Gravel for a Long Rural Driveway in Florida", "route": "/guides/concrete-vs-gravel-driveway-florida/"},
-    "rv-pad-vs-driveway": {"name": "RV Pad vs. Driveway: What's the Difference?", "route": "/guides/rv-pad-vs-driveway/"},
-    "boat-pad-vs-rv-pad": {"name": "Boat Pad vs. RV Pad: Do You Need Different Concrete?", "route": "/guides/boat-pad-vs-rv-pad/"},
-    "best-base-sandy-soil-florida": {"name": "The Best Base for Concrete on Sandy Central Florida Soil", "route": "/guides/best-base-sandy-soil-florida/"},
-    "why-concrete-driveway-cracking": {"name": "Why Is My New Concrete Driveway Already Cracking?", "route": "/guides/why-concrete-driveway-cracking/"},
-    "maintain-concrete-driveway-florida-climate": {"name": "Maintaining a Concrete Driveway in Florida's Climate", "route": "/guides/maintain-concrete-driveway-florida-climate/"},
-    "fixing-flooding-sloped-driveway": {"name": "Fixing a Sloped Driveway That Floods in Florida Rainstorms", "route": "/guides/fixing-flooding-sloped-driveway/"},
-    "repair-vs-replace-driveway": {"name": "Repair or Replace? Deciding on an Aging Driveway", "route": "/guides/repair-vs-replace-driveway/"},
-    "resurfacing-vs-new-pour-cost": {"name": "Resurfacing vs. a New Pour: Comparing the Real Cost", "route": "/guides/resurfacing-vs-new-pour-cost/"},
-    "is-resurfacing-worth-it-before-selling": {"name": "Is Resurfacing a Driveway Worth It Before Selling a Rural Property?", "route": "/guides/is-resurfacing-worth-it-before-selling/"},
+    "long-driveway-cost-florida": {"name": "How Much a Long Driveway Really Costs in Florida", "route": "/blog/long-driveway-cost-florida/"},
+    "concrete-truck-access-rural-driveway": {"name": "Can a Concrete Truck Reach a House on a Long Rural Driveway?", "route": "/blog/concrete-truck-access-rural-driveway/"},
+    "concrete-vs-gravel-driveway-florida": {"name": "Concrete vs. Gravel for a Long Rural Driveway in Florida", "route": "/blog/concrete-vs-gravel-driveway-florida/"},
+    "rv-pad-vs-driveway": {"name": "RV Pad vs. Driveway: What's the Difference?", "route": "/blog/rv-pad-vs-driveway/"},
+    "boat-pad-vs-rv-pad": {"name": "Boat Pad vs. RV Pad: Do You Need Different Concrete?", "route": "/blog/boat-pad-vs-rv-pad/"},
+    "best-base-sandy-soil-florida": {"name": "The Best Base for Concrete on Sandy Central Florida Soil", "route": "/blog/best-base-sandy-soil-florida/"},
+    "why-concrete-driveway-cracking": {"name": "Why Is My New Concrete Driveway Already Cracking?", "route": "/blog/why-concrete-driveway-cracking/"},
+    "maintain-concrete-driveway-florida-climate": {"name": "Maintaining a Concrete Driveway in Florida's Climate", "route": "/blog/maintain-concrete-driveway-florida-climate/"},
+    "fixing-flooding-sloped-driveway": {"name": "Fixing a Sloped Driveway That Floods in Florida Rainstorms", "route": "/blog/fixing-flooding-sloped-driveway/"},
+    "repair-vs-replace-driveway": {"name": "Repair or Replace? Deciding on an Aging Driveway", "route": "/blog/repair-vs-replace-driveway/"},
+    "resurfacing-vs-new-pour-cost": {"name": "Resurfacing vs. a New Pour: Comparing the Real Cost", "route": "/blog/resurfacing-vs-new-pour-cost/"},
+    "is-resurfacing-worth-it-before-selling": {"name": "Is Resurfacing a Driveway Worth It Before Selling a Rural Property?", "route": "/blog/is-resurfacing-worth-it-before-selling/"},
 }
 GUIDE_ORDER = list(GUIDES.keys())
 
@@ -167,7 +167,7 @@ NAV_PRIMARY = [
     ("Service Area", "/service-area/"),
     ("Tools", "/tools/"),
     ("Permits", "/permits/"),
-    ("Guides", "/guides/"),
+    ("Blog", "/blog/"),
     ("About", "/about/"),
 ]
 

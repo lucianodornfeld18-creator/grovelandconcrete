@@ -54,7 +54,7 @@ def get_pages():
     <div class="grid grid-3">
       <div class="card">
         <h3>Pricing shifts from "per project" to "per foot"</h3>
-        <p>Most cost guides quote a flat range for a standard two-car driveway. Once you're past roughly 100–150 feet, cost tracks much more closely with length and volume than with a generic square-footage average — see our <a href="/guides/long-driveway-cost-florida/">long driveway cost guide</a>.</p>
+        <p>Most cost guides quote a flat range for a standard two-car driveway. Once you're past roughly 100–150 feet, cost tracks much more closely with length and volume than with a generic square-footage average — see our <a href="/blog/long-driveway-cost-florida/">long driveway cost guide</a>.</p>
       </div>
       <div class="card">
         <h3>Truck access becomes a real question</h3>
@@ -62,7 +62,7 @@ def get_pages():
       </div>
       <div class="card">
         <h3>Base preparation matters more, not less</h3>
-        <p>Central Florida's sandy soil compacts differently than clay-based soil, and a longer run of driveway means more opportunity for an inconsistent base to show up later as settling or cracking. See <a href="/guides/best-base-sandy-soil-florida/">base preparation on sandy Florida soil</a>.</p>
+        <p>Central Florida's sandy soil compacts differently than clay-based soil, and a longer run of driveway means more opportunity for an inconsistent base to show up later as settling or cracking. See <a href="/blog/best-base-sandy-soil-florida/">base preparation on sandy Florida soil</a>.</p>
       </div>
     </div>
   </div>
