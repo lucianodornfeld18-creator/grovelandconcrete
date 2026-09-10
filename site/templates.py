@@ -40,7 +40,13 @@ INLINE_CSS = _minify_css((_STATIC / "fonts" / "fonts.css").read_text(encoding="u
 PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-plex-sans-var-latin.woff2"]  # display + body (variable) — preloading both makes the font swap happen right after first paint
 # Phone-size hero background embedded as a data URI on the home page only: the LCP
 # image then needs no extra request and paints with the first frame.
-HERO_INLINE_CSS = ".hero{background-image:linear-gradient(180deg,rgba(18,17,15,.84) 0%,rgba(18,17,15,.72) 55%,rgba(18,17,15,.9) 100%),url(data:image/webp;base64," + __import__("base64").b64encode((_STATIC / "images" / "hero-concrete-texture-inline.webp").read_bytes()).decode() + ")}"
+_HERO_DATA = "url(data:image/webp;base64," + __import__("base64").b64encode((_STATIC / "images" / "hero-concrete-texture-inline.webp").read_bytes()).decode() + ")"
+_HERO_GRAD = "linear-gradient(180deg,rgba(18,17,15,.80) 0%,rgba(18,17,15,.66) 55%,rgba(18,17,15,.86) 100%)"
+HERO_INLINE_CSS = (
+    f".hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1920.webp),{_HERO_DATA};background-size:cover,cover,cover;background-position:center 55%}}"
+    f"@media (max-width:1200px){{.hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1200.webp),{_HERO_DATA}}}}}"
+    f"@media (max-width:720px){{.hero{{background-image:{_HERO_GRAD},{_HERO_DATA}}}}}"
+)
 # Content-hashed script name so /static/site.<hash>.js can be cached immutably for a year.
 SITE_JS = "/static/site." + __import__("hashlib").md5((_STATIC / "site.js").read_bytes()).hexdigest()[:10] + ".js"
 
@@ -65,7 +71,7 @@ LOGO_HEADER = {
 LOGO_SIZES = "(max-width:400px) 248px, (max-width:860px) 283px, (max-width:1060px) 318px, 377px"
 def _logo_srcset(kind):  # kind: light_webp / dark_webp / light_png / dark_png
     base = LOGO_HEADER[kind].replace("-h160.", "-h96.")
-    return f"{base} 566w, {LOGO_HEADER[kind]} 943w"
+    return f"{base.replace('-h96.', '-h64.')} 377w, {base} 566w, {LOGO_HEADER[kind]} 943w"
 LOGO_FOOTER = {
     "webp": "/static/brand/webp/logo-full-dark-h400.webp",
     "png": "/static/brand/png/logo-full-dark-h400.png",
@@ -271,7 +277,7 @@ def render_page(page: dict) -> str:
 {"".join(f'<link rel="preload" as="font" type="font/woff2" href="{f}" crossorigin>' for f in PRELOAD_FONTS)}
 {'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)" fetchpriority="high">' if is_home else ''}
 <style>{INLINE_CSS}</style>
-{f'<style>@media (max-width:720px){{{HERO_INLINE_CSS}}}</style>' if is_home else ''}
+{f'<style>{HERO_INLINE_CSS}</style>' if is_home else ''}
 <script type="application/ld+json">{json.dumps(schema_objects, ensure_ascii=False)}</script>
 </head>
 <body>
