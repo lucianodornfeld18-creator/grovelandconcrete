@@ -43,7 +43,7 @@ PRELOAD_FONTS = ["/static/fonts/fjalla-one-400-latin.woff2", "/static/fonts/ibm-
 _HERO_DATA = "url(data:image/webp;base64," + __import__("base64").b64encode((_STATIC / "images" / "hero-concrete-texture-inline.webp").read_bytes()).decode() + ")"
 _HERO_GRAD = "linear-gradient(180deg,rgba(18,17,15,.80) 0%,rgba(18,17,15,.66) 55%,rgba(18,17,15,.86) 100%)"
 HERO_INLINE_CSS = (
-    f".hero{{--hero-lqip:{_HERO_DATA};background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1920.webp),var(--hero-lqip);background-size:cover,cover,cover;background-position:center 55%}}"
+    f".hero{{--hero-lqip:{_HERO_DATA};background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1200.webp),var(--hero-lqip);background-size:cover,cover,cover;background-position:center 55%}}"
     f"@media (max-width:1200px){{.hero{{background-image:{_HERO_GRAD},url(/static/images/hero-concrete-texture-1200.webp),var(--hero-lqip)}}}}"
     f"@media (max-width:720px){{.hero{{background-image:{_HERO_GRAD},var(--hero-lqip)}}}}"
 )
@@ -275,7 +275,7 @@ def render_page(page: dict) -> str:
 <meta name="theme-color" content="#F4F3ED" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1A16" media="(prefers-color-scheme: dark)">
 {"".join(f'<link rel="preload" as="font" type="font/woff2" href="{f}" crossorigin>' for f in PRELOAD_FONTS)}
-{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px) and (max-width: 1200px)" fetchpriority="high"><link rel="preload" as="image" href="/static/images/hero-concrete-texture-1920.webp" type="image/webp" media="(min-width: 1201px)" fetchpriority="high">' if is_home else ''}
+{'<link rel="preload" as="image" href="/static/images/hero-concrete-texture-1200.webp" type="image/webp" media="(min-width: 721px)" fetchpriority="high">' if is_home else ''}
 <style>{INLINE_CSS}</style>
 {f'<style>{HERO_INLINE_CSS}</style>' if is_home else ''}
 <script type="application/ld+json">{json.dumps(schema_objects, ensure_ascii=False)}</script>
