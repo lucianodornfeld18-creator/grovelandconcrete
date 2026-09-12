@@ -80,6 +80,16 @@
           });
         })
         .catch(function (err) {
+          // fetch rejects with a TypeError when the request never completed at
+          // all. Web3Forms sits behind Cloudflare and will occasionally
+          // challenge an XHR, which surfaces exactly like this. A plain form
+          // POST is a top-level navigation, gets through, and the `redirect`
+          // hidden field lands the visitor on /thank-you/ — so fall back to it
+          // rather than telling someone their enquiry failed when it need not.
+          if (err instanceof TypeError) {
+            form.submit();
+            return;
+          }
           if (msgBox) {
             msgBox.textContent = err.message || "We could not send your request. Please call instead.";
             msgBox.className = "form-msg error";

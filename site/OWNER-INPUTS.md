@@ -24,6 +24,14 @@ by design — it ships in the HTML and only authorises posting to that one endpo
 - `site.js` intercepts the submit and posts JSON, so it can show Web3Forms' error message instead of a
   guess; with JS off the native POST goes through and `redirect` lands the visitor on `/thank-you/`.
   UTM/gclid tags are appended only when the visitor actually arrived with them.
+- **Do not turn the AJAX submit into a JSON POST.** Web3Forms answers the CORS preflight with 403 and
+  no `Access-Control-Allow-Origin`, so a JSON body (or any custom header) fails in the browser with
+  "Failed to fetch" — while the identical call from curl succeeds, because curl sends no preflight. The
+  multipart POST is a CORS *simple request*, sends no preflight, and comes back with
+  `access-control-allow-origin: *`. Found the hard way on 2026-09-12.
+- Their endpoint is behind Cloudflare and will occasionally challenge an XHR (seen twice while testing
+  in bursts from one IP). When `fetch` rejects outright, `site.js` falls back to a native form POST,
+  which is a top-level navigation and gets through; `redirect` still lands the visitor on `/thank-you/`.
 - CSP had to be widened for this: `form-action` and `connect-src` now include `https://api.web3forms.com`
   (`build.py`). Without the `form-action` entry the browser blocks the no-JS submit outright.
 - **The old path still exists but is dead:** `functions/api/contact.js` → `grovelandconcrete-contact`
