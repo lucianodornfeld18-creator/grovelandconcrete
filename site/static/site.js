@@ -34,7 +34,20 @@
       }
       if (submitBtn) submitBtn.disabled = true;
 
-      var data = new FormData(form);
+      // Must stay a multipart FormData POST: it is a CORS "simple request", so
+      // no preflight is sent. Web3Forms answers OPTIONS with 403 and no CORS
+      // headers, so anything that triggers a preflight — a JSON body, a custom
+      // header — fails in the browser with "Failed to fetch" even though the
+      // same call works from curl. The multipart POST does come back with
+      // access-control-allow-origin: *, so the response is readable.
+      var data = new FormData();
+      new FormData(form).forEach(function (value, key) {
+        // `redirect` is only for the no-JS path. Sending it here would make
+        // Web3Forms answer with a 302 that fetch has to follow back across
+        // origins; we navigate ourselves instead.
+        if (key !== "redirect") data.append(key, value);
+      });
+
       // Carry campaign tags only when the visitor actually arrived with them,
       // so the emailed lead has no row of empty utm_* fields.
       try {
@@ -45,33 +58,26 @@
         });
       } catch (e) {}
 
-      // Web3Forms answers a multipart POST with an HTML success page and a JSON
-      // POST with {success, message}. Send JSON so a failure can be reported to
-      // the visitor instead of guessed at. `redirect` only matters to the no-JS
-      // path, so it is dropped here rather than emailed as a stray field.
-      var payload = {};
-      data.forEach(function (value, key) {
-        if (key !== "redirect") payload[key] = value;
-      });
-
       fetch(form.action, {
         method: "POST",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: data,
+        headers: { Accept: "application/json" },
       })
         .then(function (res) {
-          return res
-            .json()
-            .catch(function () {
-              return {};
-            })
-            .then(function (json) {
-              if (res.ok && json.success !== false) {
-                window.location.href = "/thank-you/";
-                return;
-              }
-              throw new Error(json.message || "We could not send your request.");
-            });
+          // A multipart submit is answered with Web3Forms' own HTML success
+          // page, not JSON, so the status is what decides; parse a body only to
+          // surface their message when there is one.
+          return res.text().then(function (text) {
+            var json = null;
+            try {
+              json = JSON.parse(text);
+            } catch (e) {}
+            if (res.ok && (!json || json.success !== false)) {
+              window.location.href = "/thank-you/";
+              return;
+            }
+            throw new Error((json && json.message) || "We could not send your request.");
+          });
         })
         .catch(function (err) {
           if (msgBox) {
