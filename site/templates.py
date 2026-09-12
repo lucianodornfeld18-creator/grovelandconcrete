@@ -20,7 +20,7 @@ import json
 from _data import (
     DOMAIN, BASE_URL, PUBLIC_NAME, BUSINESS, NAV_PRIMARY, FOOTER_LEGAL,
     SERVICES, SERVICE_ORDER, CITIES, CITY_ORDER, TOOLS, TOOL_ORDER,
-    TURNSTILE_SITE_KEY,
+    TURNSTILE_SITE_KEY, WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT,
 )
 from _photos import gallery_section, photos_for, image_schema
 from _seo import title_for, description_for
@@ -79,11 +79,32 @@ LOGO_FOOTER = {
 }
 
 
+def web3forms_fields(page_url: str, subject: str, prefix: str = "") -> str:
+    """The hidden fields a lead form needs to POST straight to Web3Forms.
+
+    Web3Forms mails the submission to the address registered against the access
+    key, so nothing of ours handles the lead. `redirect` is what a browser
+    without JS follows on success; site.js intercepts and lands on the same
+    page. `botcheck` is Web3Forms' own honeypot — a submission that arrives with
+    it ticked is dropped on their side, which is why it replaced the old
+    `company` honeypot the retired Pages Function used to check."""
+    hp_id = (prefix or "") + "botcheck"
+    return (
+        f'<input type="hidden" name="access_key" value="{_esc(WEB3FORMS_ACCESS_KEY)}">'
+        f'<input type="hidden" name="subject" value="{_esc(subject)}">'
+        f'<input type="hidden" name="from_name" value="{_esc(PUBLIC_NAME)} website">'
+        f'<input type="hidden" name="redirect" value="{BASE_URL}/thank-you/">'
+        f'<input type="hidden" name="page_url" value="{_esc(page_url)}">'
+        f'<label class="hp" for="{hp_id}">Leave this box unchecked</label>'
+        f'<input class="hp" type="checkbox" id="{hp_id}" name="botcheck" tabindex="-1" autocomplete="off">'
+    )
+
+
 def turnstile_html() -> str:
     """Cloudflare Turnstile widget + loader. Empty while the site key is still
-    the placeholder so forms don't render a broken widget; must be paired with
-    TURNSTILE_SECRET_KEY on the Pages Function, which enforces the token only
-    when the secret is set."""
+    the placeholder so forms don't render a broken widget. Verification now
+    happens inside Web3Forms: turning it on means setting the site key here and
+    the secret on the Web3Forms access key, together."""
     if not TURNSTILE_SITE_KEY or TURNSTILE_SITE_KEY.startswith("{{"):
         return ""
     return (

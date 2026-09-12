@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from _data import BUSINESS, PUBLIC_NAME
-from templates import turnstile_html
+from templates import turnstile_html, web3forms_fields
+from _data import WEB3FORMS_ENDPOINT
 
 def get_pages():
     pages = []
@@ -63,13 +64,8 @@ def get_pages():
 <div class="wrap" style="padding:0 0 60px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px">
   <div>
     <p class="lede">{BUSINESS['disclosure_form']}</p>
-    <form class="lead-form" action="/api/contact" method="POST">
-      <label class="hp" for="company">Company (leave blank)</label>
-      <input class="hp" type="text" id="company" name="company" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="page_url" value="/contact/">
-      <input type="hidden" name="utm_source" value="">
-      <input type="hidden" name="utm_medium" value="">
-      <input type="hidden" name="utm_campaign" value="">
+    <form class="lead-form" action="{WEB3FORMS_ENDPOINT}" method="POST">
+      {web3forms_fields("/contact/", "New estimate request — Groveland Concrete (contact page)")}
 
       <div class="field">
         <label for="name">Full name</label>

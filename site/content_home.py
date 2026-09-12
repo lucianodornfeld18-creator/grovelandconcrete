@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from _data import BUSINESS, SERVICES, SERVICE_ORDER, CITIES, CITY_ORDER, TOOLS
-from templates import turnstile_html
+from templates import turnstile_html, web3forms_fields
+from _data import WEB3FORMS_ENDPOINT
 from _photos import home_strip
 
 HOME_FAQS = [
@@ -44,13 +45,8 @@ def get_pages():
     <div class="hero-panel hero-form-panel">
       <h2 class="panel-title" style="margin-bottom:4px">Request a Free Estimate</h2>
       <p class="form-note" style="margin-bottom:16px">Tell us about your project — no obligation.</p>
-      <form class="lead-form hero-form" action="/api/contact" method="POST">
-        <label class="hp" for="hero-company">Company (leave blank)</label>
-        <input class="hp" type="text" id="hero-company" name="company" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="page_url" value="/">
-        <input type="hidden" name="utm_source" value="">
-        <input type="hidden" name="utm_medium" value="">
-        <input type="hidden" name="utm_campaign" value="">
+      <form class="lead-form hero-form" action="{WEB3FORMS_ENDPOINT}" method="POST">
+        {web3forms_fields("/", "New estimate request — Groveland Concrete (home page)", prefix="hero-")}
 
         <div class="field">
           <label for="hero-name">Full name</label>

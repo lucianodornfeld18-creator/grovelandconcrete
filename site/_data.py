@@ -35,10 +35,19 @@ BUSINESS = {
 }
 
 # Cloudflare Turnstile public site key. While this is still the placeholder the
-# widget is NOT rendered on any form (see templates.turnstile_html), and the
-# Pages Function skips verification while TURNSTILE_SECRET_KEY is unset — set
-# both together when going live (OWNER-INPUTS.md).
+# widget is NOT rendered on any form (see templates.turnstile_html). Turnstile is
+# now verified by Web3Forms, not by us: set the secret in the Web3Forms dashboard
+# for this access key at the same time as the site key here (OWNER-INPUTS.md).
 TURNSTILE_SITE_KEY = "{{TURNSTILE_SITE_KEY}}"
+
+# ---------------------------------------------------------------------------
+# Web3Forms. The lead forms POST straight to Web3Forms, which emails the
+# submission to the address registered against this access key — no Worker of
+# ours in the path. The key is public by design (it ships in the HTML) and only
+# authorises posting to that one endpoint.
+# ---------------------------------------------------------------------------
+WEB3FORMS_ACCESS_KEY = "2e0e19f8-95b6-4a53-a05d-f1bd94f16650"
+WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit"
 
 BRAND = {
     "clay": "#6E3B25",

@@ -220,9 +220,11 @@ def write_headers_and_redirects():
         "style-src 'self' 'unsafe-inline'",
         "img-src 'self' data:",
         "font-src 'self'",
-        "connect-src 'self' https://cloudflareinsights.com https://challenges.cloudflare.com",
+        "connect-src 'self' https://cloudflareinsights.com https://challenges.cloudflare.com https://api.web3forms.com",
         "frame-src https://challenges.cloudflare.com",
-        "form-action 'self'",
+        # The lead forms POST to Web3Forms; without it here the browser blocks
+        # the no-JS fallback submit outright.
+        "form-action 'self' https://api.web3forms.com",
         "base-uri 'self'",
         "object-src 'none'",
         "frame-ancestors 'self'",

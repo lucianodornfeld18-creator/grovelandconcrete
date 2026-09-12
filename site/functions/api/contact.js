@@ -1,3 +1,12 @@
+// DEPRECATED (2026-09-12) — no form on the site posts here any more.
+// The lead forms on / and /contact/ POST straight to Web3Forms
+// (https://api.web3forms.com/submit), which mails the submission to the address
+// registered against the access key in _data.py. This Function and the
+// `grovelandconcrete-contact` Worker it calls are kept only as a fallback: if
+// Web3Forms is dropped, point the two form actions back at /api/contact and it
+// works again untouched. Delete both, and the CONTACT_EMAIL service binding in
+// wrangler.jsonc, once Web3Forms has proven itself.
+//
 // Cloudflare Pages Function — POST /api/contact
 // Mirrors the proven pattern already running on windermereconcrete.com, plus
 // Turnstile verification, hub_id attribution, and a best-effort KV rate limit.
